@@ -1,0 +1,94 @@
+.cblue { background-color:#82E0C2; }
+.cpurple { background-color:#A47BAB; }
+.cpink { background-color:#F67194; }
+.corange { background-color:#FFBE68; }
+.cgreen { background-color:#A4E596; }
+.cyellow { background-color:#d3f180; }
+.cred { background-color:#fd8c80; }
+
+.cdarkpurple { background-color:#956578; }
+.cbrown { background-color:#9e6557; }
+.cdarkgreen { background-color:#54c972; }
+.cdarkblue { background-color:#546c82; }
+.cwhatever { background-color:#9e3763; }
+.cbrown { background-color:#cc6b4a; }
+.canothergreen { background-color:#6cd461; }
+.cindigo { background-color:#7d6371; }
+.cheavyorange { background-color:#f6543c; }
+.cheavyorange2 { background-color:#fd6834; }
+
+.bcdarkpurple { border-color:#956578; }
+.bcbrown { border-color:#9e6557; }
+.bcdarkgreen { border-color:#54c972; }
+.bcdarkblue { border-color:#546c82; }
+.bcwhatever { border-color:#9e3763; }
+.bcbrown { border-color:#cc6b4a; }
+.bcanothergreen { border-color:#6cd461; }
+.bcindigo { border-color:#7d6371; }
+.bcheavyorange { border-color:#f6543c; }
+.bcheavyorange2 { border-color:#fd6834; }
+
+.back.bcdarkpurple { border-color:#956578; }
+.back.bcdarkbrown { border-color:#9e6557; }
+.back.bcdarkgreen { border-color:#54c972; }
+.back.bcdarkblue { border-color:#546c82; }
+.back.bcwhatever { border-color:#9e3763; }
+.back.bcbrown { border-color:#cc6b4a; }
+.back.bcanothergreen { border-color:#6cd461; }
+.back.bcindigo { border-color:#7d6371; }
+.back.bcheavyorange { border-color:#f6543c; }
+.back.bcheavyorange2 { border-color:#fd6834; }
+
+
+body, html { margin:0; padding:0; background-color: gray; }
+
+wrap { width:100%; position: relative; }
+
+#content-box { width: 1140px; height: 9300px; margin:0 auto; position:relative; }
+#content-cards { position:absolute; top:0; left:0; right:0; bottom:0; background: url("/static/images/slides_cards0.png") no-repeat scroll left top transparent;  }
+#content-text { position:absolute; top:0; left:0; right:0; bottom:0; /*background: url("/static/images/slides_text_wire_corners.png") no-repeat scroll left top transparent; */ }
+
+#content-back { position:fixed; top:0; left:0; right:0; bottom:0; height: 9300px; }
+
+/* 920 | 900 */
+.backslide { width:100%; height:736px; position:relative; /*display:none;*/ }
+/*.backslide.inview { display: block; }*/
+.backwhite { background-image: url("/static/images/white_overlay3.png"); position: absolute; top:0; left:0; right:0; bottom:0; }
+.back { width:100%; height:716px; border-bottom:20px solid transparent; }
+
+#content-back .backslide:first-child { height:836px; }
+#content-back .backslide:first-child .back { height: 816px; }
+
+.card { width: 1140px; height: 920px; /*border:1px solid red;*/  }
+.card_1 { background: url("/static/images/cards/card_1.png") no-repeat scroll left top transparent;  }
+.card_2 { background: url("/static/images/cards/card_2.png") no-repeat scroll left top transparent;  }
+.card_3 { background: url("/static/images/cards/card_3.png") no-repeat scroll left top transparent;  }
+.card_4 { background: url("/static/images/cards/card_4.png") no-repeat scroll left top transparent;  }
+
+.ctext { width: 1140px; height: 920px; position:relative; /*border:1px solid blue;*/ }
+/*.ctext.ctext_1 { background: url("/static/images/texts/text_1.png") no-repeat scroll left top transparent; }
+.ctext.ctext_2 { background: url("/static/images/texts/text_2.png") no-repeat scroll left top transparent; }
+.ctext.ctext_3 { background: url("/static/images/texts/text_3.png") no-repeat scroll left top transparent; }
+.ctext.ctext_4 { background: url("/static/images/texts/text_4.png") no-repeat scroll left top transparent; }
+.ctext.ctext_5 { background: url("/static/images/texts/text_5.png") no-repeat scroll left top transparent; }
+.ctext.ctext_6 { background: url("/static/images/texts/text_6.png") no-repeat scroll left top transparent; }
+.ctext.ctext_7 { background: url("/static/images/texts/text_7.png") no-repeat scroll left top transparent; }
+.ctext.ctext_8 { background: url("/static/images/texts/text_8.png") no-repeat scroll left top transparent; }
+.ctext.ctext_9 { background: url("/static/images/texts/text_9.png") no-repeat scroll left top transparent; }
+.ctext.ctext_10 { background: url("/static/images/texts/text_10.png") no-repeat scroll left top transparent; }*/
+
+*[class|="ctext-back"] { position:absolute; background: white; }
+*[class|="ctext-img"] { position:absolute; background: none; top:0; left:0; }
+
+.ctext.ctext-1 { background: url("/static/images/cards/card_border_1.png") no-repeat scroll 206px 167px transparent; }
+.ctext-back-1 { left:222px; top:183px; width:700px; height:510px; }
+
+.ctext.ctext-2 { background: url("/static/images/texts/text_2.png") no-repeat scroll left top transparent; }
+.ctext.ctext-3 { background: url("/static/images/texts/text_3.png") no-repeat scroll left top transparent; }
+.ctext.ctext-4 { background: url("/static/images/texts/text_4.png") no-repeat scroll left top transparent; }
+.ctext.ctext-5 { background: url("/static/images/texts/text_5.png") no-repeat scroll left top transparent; }
+.ctext.ctext-6 { background: url("/static/images/texts/text_6.png") no-repeat scroll left top transparent; }
+.ctext.ctext-7 { background: url("/static/images/texts/text_7.png") no-repeat scroll left top transparent; }
+.ctext.ctext-8 { background: url("/static/images/texts/text_8.png") no-repeat scroll left top transparent; }
+.ctext.ctext-9 { background: url("/static/images/texts/text_9.png") no-repeat scroll left top transparent; }
+.ctext.ctext-10 { background: url("/static/images/texts/text_10.png") no-repeat scroll left top transparent; }
