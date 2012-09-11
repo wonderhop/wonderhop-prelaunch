@@ -16,15 +16,41 @@ var Prelaunch = (function(){ function Prelaunch($) { this._ = 'prelaunch'; var s
         });
         
         $('#content-back').scrollingParallax({
-            staticSpeed: .8,
+            staticSpeed: 0.66,
             staticScrollLimit: false,
         });
+        //$('#content-back').sinaptillax(1);
+        //$('#content-back').parallax('50%',1);
         
         $('body').click(function(){
             var page = parseInt( window.scrollY / 920 ) + 1;
             if (page > 9) return;
             $.scrollTo(page * 920 + 150, 800);
         });
+        
+        (function() {
+            var $pimgs = $('.prod_img');
+            $pimgs.each(function(i,e){
+                $(e).data('iv_lock', false).data('orig_height', $(e).height());
+                $(e).css({height:0});
+                $(e).bind('inview', function(ev,is_in){
+                    var $this = $(this);
+                    if ($this.data('iv_lock')) return;
+                    else {
+                        $this.data('iv_lock', true);
+                        if (is_in && ! $this.is(':visible') || parseInt($this.height()) == 0) {
+                            $this.delay(300).animate({height:$this.data('orig_height')},{
+                                easing:'swing',
+                                duration: 600,
+                                complete: function(){
+                                    $(this).css({display:'block'}).data('iv_lock', false);
+                                },
+                            });
+                        }
+                    }
+                });
+            });
+        })();
     }
     
     

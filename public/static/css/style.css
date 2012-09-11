@@ -40,24 +40,29 @@
 .back.bcheavyorange2 { border-color:#fd6834; }
 
 
-body, html { margin:0; padding:0; background-color: gray; }
+body, html { margin:0; padding:0; background-color:#fd8c80; }
 
 wrap { width:100%; position: relative; }
 
 #content-box { width: 1140px; height: 9300px; margin:0 auto; position:relative; }
-#content-cards { position:absolute; top:0; left:0; right:0; bottom:0; background: url("/static/images/slides_cards0.png") no-repeat scroll left top transparent;  }
+#content-cards { position:absolute; top:0; left:0; right:0; bottom:0; /*background: url("/static/images/slides_cards.png") no-repeat scroll left top transparent;*/  }
 #content-text { position:absolute; top:0; left:0; right:0; bottom:0; /*background: url("/static/images/slides_text_wire_corners.png") no-repeat scroll left top transparent; */ }
 
-#content-back { position:fixed; top:0; left:0; right:0; bottom:0; height: 9300px; }
+#content-back { position:absolute; top:0; left:0; right:0; bottom:0; height: 6080px; }
 
-/* 920 | 900 */
-.backslide { width:100%; height:736px; position:relative; /*display:none;*/ }
+/* 920 / 900 -->  736/716 (0.8) | 598/578 (0.65) */
+.backslide { width:100%; height:598px; position:relative; /*display:none;*/ }
 /*.backslide.inview { display: block; }*/
-.backwhite { background-image: url("/static/images/white_overlay3.png"); position: absolute; top:0; left:0; right:0; bottom:0; }
-.back { width:100%; height:716px; border-bottom:20px solid transparent; }
+/*.backwhite { background-image: url("/static/images/white_overlay3.png"); position: absolute; top:0; left:0; right:0; bottom:0; }*/
+.backwhitefix { background-image: url("/static/images/white_overlay3.png"); position:fixed; top:0; left:0; right:0; bottom:0; }
+.back { width:100%; height:578px; border-bottom:20px solid transparent; }
 
-#content-back .backslide:first-child { height:836px; }
-#content-back .backslide:first-child .back { height: 816px; }
+.backslide.backslide-1 { height:698px; }
+.backslide.backslide-1 .back { height: 678px; }
+.backslide.backslide-10 { height:798px }
+.backslide.backslide-10 .back { height: 778px; }
+.backslide.backslide-11 { height:798px }
+.backslide.backslide-11 .back { height: 778px; }
 
 .card { width: 1140px; height: 920px; /*border:1px solid red;*/  }
 .card_1 { background: url("/static/images/cards/card_1.png") no-repeat scroll left top transparent;  }
@@ -65,23 +70,19 @@ wrap { width:100%; position: relative; }
 .card_3 { background: url("/static/images/cards/card_3.png") no-repeat scroll left top transparent;  }
 .card_4 { background: url("/static/images/cards/card_4.png") no-repeat scroll left top transparent;  }
 
+.card.card-5 { background-position: left 30px; }
+.card.card-7 { background-position: left 17px; }
+.card.card-8 { background-position: left 17px; }
+.card.card-9 { background-position: left 58px; }
+
 .ctext { width: 1140px; height: 920px; position:relative; /*border:1px solid blue;*/ }
-/*.ctext.ctext_1 { background: url("/static/images/texts/text_1.png") no-repeat scroll left top transparent; }
-.ctext.ctext_2 { background: url("/static/images/texts/text_2.png") no-repeat scroll left top transparent; }
-.ctext.ctext_3 { background: url("/static/images/texts/text_3.png") no-repeat scroll left top transparent; }
-.ctext.ctext_4 { background: url("/static/images/texts/text_4.png") no-repeat scroll left top transparent; }
-.ctext.ctext_5 { background: url("/static/images/texts/text_5.png") no-repeat scroll left top transparent; }
-.ctext.ctext_6 { background: url("/static/images/texts/text_6.png") no-repeat scroll left top transparent; }
-.ctext.ctext_7 { background: url("/static/images/texts/text_7.png") no-repeat scroll left top transparent; }
-.ctext.ctext_8 { background: url("/static/images/texts/text_8.png") no-repeat scroll left top transparent; }
-.ctext.ctext_9 { background: url("/static/images/texts/text_9.png") no-repeat scroll left top transparent; }
-.ctext.ctext_10 { background: url("/static/images/texts/text_10.png") no-repeat scroll left top transparent; }*/
+
 
 *[class|="ctext-back"] { position:absolute; background: white; }
 *[class|="ctext-img"] { position:absolute; background: none; top:0; left:0; }
 
-.ctext.ctext-1 { background: url("/static/images/cards/card_border_1.png") no-repeat scroll 206px 167px transparent; }
-.ctext-back-1 { left:222px; top:183px; width:700px; height:510px; }
+/*.ctext.ctext-1 { background: url("/static/images/cards/card_border_1.png") no-repeat scroll 206px 167px transparent; }
+.ctext-back-1 { left:222px; top:183px; width:700px; height:510px; }*/
 
 .ctext.ctext-2 { background: url("/static/images/texts/text_2.png") no-repeat scroll left top transparent; }
 .ctext.ctext-3 { background: url("/static/images/texts/text_3.png") no-repeat scroll left top transparent; }
@@ -92,3 +93,16 @@ wrap { width:100%; position: relative; }
 .ctext.ctext-8 { background: url("/static/images/texts/text_8.png") no-repeat scroll left top transparent; }
 .ctext.ctext-9 { background: url("/static/images/texts/text_9.png") no-repeat scroll left top transparent; }
 .ctext.ctext-10 { background: url("/static/images/texts/text_10.png") no-repeat scroll left top transparent; }
+.ctext.ctext-10 { height:1020px; }
+
+/* 504 | 672  */
+
+
+.prod_img { background: none repeat scroll 0 0 gray; height: 345px; left: 545px; position: absolute; top: 300px; width: 370px; }
+.prod_img-4 { height: 370px; left: 515px; top: 265px; width: 400px; }
+.prod_img-5 { height: 370px; left: 500px; top: 270px; width: 410px; }
+.prod_img-6 { height: 350px; left: 570px; top: 280px; width: 345px; }
+.prod_img-7 { height: 350px; left: 525px; top: 265px; width: 390px; }
+.prod_img-8 { left: 545px; top: 290px; }
+.prod_img-9 {  height: 355px; left: 535px; top: 290px; }
+
