@@ -19,8 +19,8 @@
 </head>
 <body>
 <div class="wrap">
-
-    <div id="content-back" data-stellar-ratio="0.4">
+    
+    <div id="content-back" data-stellar-background-ratio="0.7">
         <div class="backslide backslide-1"><div class="back cblue bcdarkpurple"></div><div class="backwhite"></div></div>
         <div class="backslide backslide-2"><div class="back cpink bcdarkbrown"></div><div class="backwhite"></div></div>
         <div class="backslide backslide-3"><div class="back cgreen bcdarkgreen"></div><div class="backwhite"></div></div>
@@ -33,7 +33,9 @@
         <div class="backslide backslide-10"><div class="back corange bcheavyorange2"></div><div class="backwhite"></div></div>
         <div class="backslide backslide-11"><div class="back cred"></div><div class="backwhite"></div></div>
     </div>
+    
     <div class="backwhitefix"></div>
+    
     
     <div id="content-box">
         <div id="content-cards" class="cnt">
@@ -64,7 +66,8 @@
             <!-- inite page -->
             <div class="ctext ctext-11">
                 <div class="ctext-back-11"></div>
-                <img class="ctext-img-11" src="/static/images/invite_page.png" />
+                <!--<img class="ctext-img-11" src="/static/images/invite_page.png" />-->
+                <img class="ctext-img-11" src="/static/images/texts/text_11_1.png" />
             </div>
             
             

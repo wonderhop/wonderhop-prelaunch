@@ -10,22 +10,27 @@ var Prelaunch = (function(){ function Prelaunch($) { this._ = 'prelaunch'; var s
     {
         //$.stellar();
         
-        $('.backslide').bind('inview',function(ev,is_in){
-            //if(is_in) $(this).addClass('inview');
-            //else $(this).removeClass('inview');
-        });
+        //$('.backslide').bind('inview',function(ev,is_in){
+        //    //if(is_in) $(this).addClass('inview');
+        //    //else $(this).removeClass('inview');
+        //});
         
         $('#content-back').scrollingParallax({
-            staticSpeed: 0.66,
+            staticSpeed: 0.7,
             staticScrollLimit: false,
         });
+        //$.scrollingParallax('/static/images/para_bg.jpg',{
+        //    staticSpeed: 0.7,
+        //    staticScrollLimit: false,
+        //    bgHeight:'7210px',
+        //});
         //$('#content-back').sinaptillax(1);
-        //$('#content-back').parallax('50%',1);
+        //$('#content-back').parallax('50%',0.7);
         
         $('body').click(function(){
             var page = parseInt( window.scrollY / 920 ) + 1;
-            if (page > 9) return;
-            $.scrollTo(page * 920 + 150, 800);
+            if (page > 10) return;
+            $.scrollTo(page * 920 + 150, 1400);
         });
         
         (function() {
