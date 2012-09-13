@@ -27,11 +27,11 @@ var Prelaunch = (function(){ function Prelaunch($) { this._ = 'prelaunch'; var s
         //$('#content-back').sinaptillax(1);
         //$('#content-back').parallax('50%',0.7);
         
-        $('body').click(function(){
-            var page = parseInt( window.scrollY / 920 ) + 1;
-            if (page > 10) return;
-            $.scrollTo(page * 920 + 150, 1400);
-        });
+        //$('.backwhitefix').click(function(){
+        //    var page = parseInt( window.scrollY / 920 ) + 1;
+        //    if (page > 10) return;
+        //    $.scrollTo(page * 920 + 150, 1200);
+        //});
         
         (function() {
             var $pimgs = $('.prod_img');
