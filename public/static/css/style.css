@@ -45,16 +45,16 @@ body, html { margin:0; padding:0; background-color:#fd8c80; }
 wrap { width:100%; position: relative; }
 
 #content-box { width: 1140px; height: 10300px; margin:0 auto; position:relative; overflow:hidden; }
-#content-cards { position:absolute; top:0; left:0; right:0; bottom:0; /*background: url("/static/images/slides_cards.png") no-repeat scroll left top transparent;*/  }
-#content-text { position:absolute; top:0; left:0; right:0; bottom:0; /*background: url("/static/images/slides_text_wire_corners.png") no-repeat scroll left top transparent; */ }
+#content-cards { position:absolute; top:0; left:0; right:0; bottom:0; /*background: url("/static/images/slides_cards-nq8.png") no-repeat scroll left top transparent;*/  }
+#content-text { position:absolute; top:0; left:0; right:0; bottom:0; /*background: url("/static/images/slides_text_wire_corners-nq8.png") no-repeat scroll left top transparent; */ }
 
 #content-back { position:absolute; top:0; left:0; right:0; bottom:0; height: 7210px; /*background: url("/static/images/para_bg.jpg") repeat fixed left top transparent;*/}
 
 /* 920 / 900 -->  736/716 (0.8) | 598/578 (0.65) */
 .backslide { width:100%; height:736px; position:relative; /*display:none;*/ }
 /*.backslide.inview { display: block; }*/
-/*.backwhite { background-image: url("/static/images/white_overlay3.png"); position: absolute; top:0; left:0; right:0; bottom:0; }*/
-.backwhitefix { background-image: url("/static/images/white_overlay3.png"); position:fixed; top:0; left:0; right:0; bottom:0; }
+/*.backwhite { background-image: url("/static/images/white_overlay3-nq8.png"); position: absolute; top:0; left:0; right:0; bottom:0; }*/
+.backwhitefix { background-image: url("/static/images/white_overlay3-nq8-nq8.png"); position:fixed; top:0; left:0; right:0; bottom:0; }
 .back { width:100%; height:716px; border-bottom:20px solid transparent; }
 
 /*.backslide.backslide-1 { height:836px; }
@@ -100,10 +100,10 @@ wrap { width:100%; position: relative; }
 
 
 .card { width: 1140px; height: 920px; /*border:1px solid red;*/  }
-.card_1 { background: url("/static/images/cards/card_1.png") no-repeat scroll left top transparent;  }
-.card_2 { background: url("/static/images/cards/card_2.png") no-repeat scroll left top transparent;  }
-.card_3 { background: url("/static/images/cards/card_3.png") no-repeat scroll left top transparent;  }
-.card_4 { background: url("/static/images/cards/card_4.png") no-repeat scroll left top transparent;  }
+.card_1 { background: url("/static/images/cards/card_1-nq8.png") no-repeat scroll left top transparent;  }
+.card_2 { background: url("/static/images/cards/card_2-nq8.png") no-repeat scroll left top transparent;  }
+.card_3 { background: url("/static/images/cards/card_3-nq8.png") no-repeat scroll left top transparent;  }
+.card_4 { background: url("/static/images/cards/card_4-nq8.png") no-repeat scroll left top transparent;  }
 
 .card.card-5 { background-position: left 30px; }
 .card.card-7 { background-position: left 17px; }
@@ -116,20 +116,20 @@ wrap { width:100%; position: relative; }
 *[class|="ctext-back"] { position:absolute; background: white; }
 *[class|="ctext-img"] { position:absolute; background: none; top:0; left:0; }
 
-/*.ctext.ctext-1 { background: url("/static/images/cards/card_border_1.png") no-repeat scroll 206px 167px transparent; }
+/*.ctext.ctext-1 { background: url("/static/images/cards/card_border_1-nq8.png") no-repeat scroll 206px 167px transparent; }
 .ctext-back-1 { left:222px; top:183px; width:700px; height:510px; }*/
 
-/*.ctext.ctext-1 { background: url("/static/images/texts/text_1.png") no-repeat scroll left top transparent; }
-.ctext.ctext-2 { background: url("/static/images/texts/text_2.png") no-repeat scroll left top transparent; }
-.ctext.ctext-3 { background: url("/static/images/texts/text_3.png") no-repeat scroll left top transparent; }
-.ctext.ctext-4 { background: url("/static/images/texts/text_4.png") no-repeat scroll left top transparent; }
-.ctext.ctext-5 { background: url("/static/images/texts/text_5.png") no-repeat scroll left top transparent; }
-.ctext.ctext-6 { background: url("/static/images/texts/text_6.png") no-repeat scroll left top transparent; }
-.ctext.ctext-7 { background: url("/static/images/texts/text_7.png") no-repeat scroll left top transparent; }
-.ctext.ctext-8 { background: url("/static/images/texts/text_8.png") no-repeat scroll left top transparent; }
-.ctext.ctext-9 { background: url("/static/images/texts/text_9.png") no-repeat scroll left top transparent; }
-.ctext.ctext-10 { background: url("/static/images/texts/text_10.png") no-repeat scroll left top transparent; }
-.ctext.ctext-11 { background: url("/static/images/invite_page.png") no-repeat scroll left top transparent; }*/
+/*.ctext.ctext-1 { background: url("/static/images/texts/text_1-nq8.png") no-repeat scroll left top transparent; }
+.ctext.ctext-2 { background: url("/static/images/texts/text_2-nq8.png") no-repeat scroll left top transparent; }
+.ctext.ctext-3 { background: url("/static/images/texts/text_3-nq8.png") no-repeat scroll left top transparent; }
+.ctext.ctext-4 { background: url("/static/images/texts/text_4-nq8.png") no-repeat scroll left top transparent; }
+.ctext.ctext-5 { background: url("/static/images/texts/text_5-nq8.png") no-repeat scroll left top transparent; }
+.ctext.ctext-6 { background: url("/static/images/texts/text_6-nq8.png") no-repeat scroll left top transparent; }
+.ctext.ctext-7 { background: url("/static/images/texts/text_7-nq8.png") no-repeat scroll left top transparent; }
+.ctext.ctext-8 { background: url("/static/images/texts/text_8-nq8.png") no-repeat scroll left top transparent; }
+.ctext.ctext-9 { background: url("/static/images/texts/text_9-nq8.png") no-repeat scroll left top transparent; }
+.ctext.ctext-10 { background: url("/static/images/texts/text_10-nq8.png") no-repeat scroll left top transparent; }
+.ctext.ctext-11 { background: url("/static/images/invite_page-nq8.png") no-repeat scroll left top transparent; }*/
 
 .ctext.ctext-10 { height:1020px; }
 
