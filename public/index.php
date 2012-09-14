@@ -4,6 +4,10 @@
 require_once dirname(__FILE__) . '/../main.php';
 
 
+if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
+    confirm($_GET['c']);
+}
+
 ?><!DOCTYPE html>
 <html>
 <head>
@@ -131,13 +135,13 @@ require_once dirname(__FILE__) . '/../main.php';
                                         Subscriber.confirmed = parseInt(Subscriber.confirmed) ? true : false;
                                         Subscriber.slideshowed = parseInt(Subscriber.slideshowed) ? true : false;
                                         Subscriber.personal_link = resp.personal_link;
-                                        if ( ! Subscriber.confirmed) {
-                                            console.log('gigi');
-                                            $('.popup_title').html('Confirmation needed !<br/>');
-                                            $('.popup_content').css({height:78,overflow:'visible'})
-                                            .html('Please check your email for a confirmation link we sent you, follow it and come back <br/><br/> Thanks,');
-                                            return;
-                                        }
+                                        //if ( ! Subscriber.confirmed) {
+                                        //    console.log('gigi');
+                                        //    $('.popup_title').html('Confirmation needed !<br/>');
+                                        //    $('.popup_content').css({height:78,overflow:'visible'})
+                                        //    .html('Please check your email for a confirmation link we sent you, follow it and come back <br/><br/> Thanks,');
+                                        //    return;
+                                        //}
                                         $('#backstretch').clone().prop('id','bsclone').prependTo('#email_screen').css('position','absolute');
                                         $('#backstretch').hide().remove();
                                         var h = $('#email_screen').height(), css = {top:-h};
@@ -318,7 +322,7 @@ require_once dirname(__FILE__) . '/../main.php';
                         <button id="cloud_invite_submit" type="submit" title="Send Invite" class="button"><span><span>Send</span></span></button>
                     </form>
                     
-                    <input type="text" id="personal-link" value="" onfocus="jQuery(this).select();"/>
+                    <input type="text" id="personal-link" value="" onfocus="setTimeout(function(){jQuery('#personal-link').select();}, 100);"/>
                     
                     <div id="sharebox">
 

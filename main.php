@@ -79,6 +79,7 @@ function newemail_save($email, $invited_by = NULL)
         $fields .= ',invited_by';
         $vph .= ',?';
         $values[] = $inviter['id'];
+        send_email($email, $values[2]); 
     }
     $fields .=  ')';
     $vph .=  ')';
@@ -96,6 +97,11 @@ function subscriber($email_or_id_or_token, $fields = '`id`,`email`,`personal_tok
     return ($q->execute(array($id)) and ($res = $q->fetchAll(PDO::FETCH_ASSOC))) ? $res[0] : false ;
 }
 
+
+function send_email($email, $token)
+{
+    mail($email, 'Email Confirmation', BASEURL . "?c=$token");
+}
 
 
 function personal_link($email, $as_get_param = false)

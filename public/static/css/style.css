@@ -43,7 +43,7 @@
 .back.bcheavyorange2 { border-color:#fd6834; }
 
 
-body, html { margin:0; padding:0; background-color:#fd8c80; }
+body, html { margin:0; padding:0; background-color:/*#fd8c80*/ white; }
 
 #wrap { width:100%; position: relative; }
 
@@ -190,9 +190,11 @@ body, html { margin:0; padding:0; background-color:#fd8c80; }
 .form-list { list-style:none; margin:0; padding:0; }
 
 .block_popup { background: url("/static/images/popup_back.png") no-repeat scroll left top transparent; 
-        padding: 227px 131px 46px 96px; margin:0; width: 593px ; height: 267px; position:absolute; margin-top:-284px; top: 50%;
-        right:0; left:auto; text-align: center; color:#000; border:none; background-color:transparent; cursor:auto; 
-        font-size:18px; font-weight:bold; font-family:"letter-gothic-std",monospace; text-transform: uppercase; }
+        padding: 227px 131px 46px 96px; margin:0; width: 593px ; height: 267px; position:absolute; margin-top:-312px; top: 50%;
+        right:50%; left:auto; text-align: center; color:#000; border:none; background-color:transparent; cursor:auto; 
+        font-size:18px; font-weight:bold; font-family:"letter-gothic-std",monospace; text-transform: uppercase;
+        margin-right: -430px;  }
+        
 .block_popup_inner { background:white; padding:15px; width: 563px ; height: 237px; position:relative; }
 label[for=terms] { width: auto; }
 .validation-advice { text-align:left; }
@@ -232,19 +234,19 @@ label[for=terms] { width: auto; }
     padding:0 0 0 21px; background: url("../../images/dot_arrow_right.png") no-repeat scroll right 20px transparent; }*/
     { background: url("/static/images/dot_arrow_right.png") no-repeat scroll right 2px transparent;border:none; color: white;
     display: block; font-family: "letter-gothic-std",monospace; font-size: 17px; height: 23px; width: 184px; line-height: 23px;
-    padding: 0 0 0 21px; margin-right: 12px; position: absolute; left: 0; margin-top: -8px; top: 50%; text-align: left; 
+    padding: 0 0 0 21px; margin-right: 12px; position: absolute; left: 0; margin-top: -9px; top: 50%; text-align: left; 
     letter-spacing: 0.7px; }
     
 .block_popup .popup_content .form-list input /*{ width: 278px; height: 37px; border:none;outline:none; line-height: 37px;
     padding-left:24px; background:none;  padding-top:11px; font-size: 16px; font-family: "letter-gothic-std",monospace;
     box-shadow: none; text-transform:uppercase; color: #7f767e; font-weight:bold; } */
     {width: 264px; height: 23px; border: none; outline: none; line-height: 1.5; background: none;
-    font-size: 15px; font-family: "letter-gothic-std",monospace; box-shadow: none; text-transform: uppercase;
-    color: #7F767E; font-weight: bold; margin-left: -16px; margin-top: 9px; padding: 10px 13px 5px 13px; letter-spacing: 2px; }
+    font-size: 14px; font-family: "letter-gothic-std",monospace; box-shadow: none; text-transform: uppercase;
+    color: #7F767E; font-weight: bold; margin-left: -16px; margin-top: 9px; padding: 11px 13px 5px 13px; letter-spacing: 2px; }
 
 
 .block_popup .popup_content .form-list li { position:relative; }
 .block_popup .popup_content .form-list li .validation-advice { position:absolute; bottom:-14px;  }
-#become_member { cursor:pointer;font-weight:bold; }
+/*#become_member { cursor:pointer;font-weight:bold; }*/
   
 

@@ -38,7 +38,7 @@ var Prelaunch = (function(){ function Prelaunch($) { this._ = 'prelaunch'; var s
             $pimgs.each(function(i,e){
                 $(e).data('iv_lock', false).data('orig_height', $(e).height());
                 $(e).css({height:0});
-                $(e).bind('inview', function(ev,is_in){
+                $(e).bind('inview', function(ev,is_in,pX,pY){
                     var $this = $(this);
                     if ($this.data('iv_lock')) return;
                     else {
