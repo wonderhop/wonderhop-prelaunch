@@ -35,6 +35,11 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
             return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
         }
         
+        function fadeText()
+        {
+            
+        }
+        
         function getURef()
         {
             return window.location.href.indexOf('?r=') > -1 ? getParameterByName('r') : window.location.href.split('/').pop();
@@ -81,8 +86,47 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
     
     <!--<div class="email_box">-->
         <div class="popup_register block_popup" >
-            <div class="block_popup_inner">
+            <div class="block_popup_inner" style="background:white;">
+                <div class="block_inner_content" style="width:100%;height:100%;">
                     <h1 class="popup_title">Wonderful finds <br/>for an inspired life</h1>
+                    <div class="control_link">
+                        <a href="#" onclick="changePopupContentLogin();" id="login_link">LOGIN</a>
+                        <a href="#" onclick="changePopupContentRegister();" id="back_link" style="display:none;">BACK</a>
+                    </div>
+                    <script type="text/javascript">
+                        function changePopupContentLogin(){
+                            var $ = jQuery,
+                                title = 'Good to <br/>have you back<br/>',
+                                text_1 = 'Login with your email address below to',
+                                text_2 = 'see your gift cards.',
+                                btn_text = 'Login';
+                            $('.block_inner_content').fadeOut(200,function(ev){
+                                $('.popup_title').html(title);
+                                $('.popup_content p.pc_l1').html(text_1);
+                                $('.popup_content p.pc_l2').html(text_2);
+                                $('#login_link').hide();
+                                $('#back_link').show();
+                                $('.actions button span').html(btn_text);
+                                $('.block_inner_content').fadeIn(200);
+                             });
+                        }
+                        function changePopupContentRegister(){
+                            var $ = jQuery,
+                                title = 'Wonderful finds<br/>for an inspired life',
+                                text_1 = 'Uniquely lovely finds to inspire your',
+                                text_2 = 'home, kitchen and family.',
+                                btn_text = 'Become a member';
+                            $('.block_inner_content').fadeOut(200, function() {
+                                $('.popup_title').html(title);
+                                $('.popup_content p.pc_l1').html(text_1);
+                                $('.popup_content p.pc_l2').html(text_2);
+                                $('#login_link').show();
+                                $('#back_link').hide();
+                                $('.actions button span').html(btn_text);
+                                $('.block_inner_content').fadeIn(200);
+                            });
+                        }
+                    </script>
                     <div class="popup_content">
                         <p class="pc_l pc_l1">Uniquely lovely finds to inspire your</p> 
                         <p class="pc_l pc_l2">home, kitchen and family.</p>
@@ -145,14 +189,23 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                         $('#backstretch').clone().prop('id','bsclone').prependTo('#email_screen').css('position','absolute');
                                         $('#backstretch').hide().remove();
                                         var h = $('#email_screen').height(), css = {top:-h};
+                                        var $html = $('html');
+                                        var htmlcss = {
+                                            position: $html.css('position'), 
+                                            width:'auto', 
+                                            height:'auto',
+                                            overflow:$html.css('overflow')
+                                        }
+                                        $('html').css({position:'fixed', width:'100%', height:'100%', overflow:'hidden'});
+                                        $('#wrap').fadeIn('fast').delay(300);
                                         $('#email_screen').animate(css, {
                                             duration: 400,
                                             easing: 'swing',
                                             complete: function(){
-                                                $('#email_screen').hide().remove();
-                                                $('#wrap').fadeIn('fast').delay(300);
+                                                $('#email_screen').delay(300).hide().remove();
+                                                $html.css(htmlcss);
                                                 if (resp.existing && Subscriber.slideshowed) {
-                                                    $.scrollTo(9350,3000);
+                                                    $.scrollTo(9300,0);
                                                 } else {
                                                     slideshowing(Subscriber);
                                                 }
@@ -182,7 +235,8 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                     
                     
                 </script>
-             
+                
+                </div><!-- block_popup_inner_content -->
             </div>
         </div>
     <!--</div>-->
@@ -311,10 +365,10 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                     
                     <form action="/invite.php" method="post" id="invitations-form" style=" ">
                         <div id="invite-links-container">
-                            <a id="cloudsponge_gmail" onclick="cloudsponge.launch('gmail');" href="#" class="csicon cloudsponge_gmail invite-import-gmail">Gmail</a>  
-                            <a id="cloudsponge_yahoo" onclick="cloudsponge.launch('yahoo');" href="#" class="csicon cloudsponge_yahoo invite-import-yahoo">Yahoo</a>
-                            <a id="cloudsponge_msn" onclick="cloudsponge.launch('msn');" href="#" class="csicon cloudsponge_msn invite-import-hotmail">Hotmail</a>
-                            <a onclick="return cloudsponge.launch('aol');" href="#" class="csicon invite-import-aol">Aol</a> 
+                            <a id="cloudsponge_gmail" onclick="cloudsponge.launch('gmail');return false;" href="#" class="csicon cloudsponge_gmail invite-import-gmail">Gmail</a>  
+                            <a id="cloudsponge_yahoo" onclick="cloudsponge.launch('yahoo');return false;" href="#" class="csicon cloudsponge_yahoo invite-import-yahoo">Yahoo</a>
+                            <a id="cloudsponge_msn" onclick="cloudsponge.launch('msn');return false;" href="#" class="csicon cloudsponge_msn invite-import-hotmail">Hotmail</a>
+                            <a onclick="return cloudsponge.launch('aol');return false;" href="#" class="csicon invite-import-aol">Aol</a> 
                         </div>
 
                         <input type="hidden" id="key" value="" />

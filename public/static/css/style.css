@@ -47,7 +47,7 @@ body, html { margin:0; padding:0; background-color:/*#fd8c80*/ white; }
 
 #wrap { width:100%; position: relative; }
 
-#content-box { width: 1140px; height: 10300px; margin:0 auto; position:relative; overflow:hidden; }
+#content-box { width: 1140px; height: 10100px; margin:0 auto; position:relative; overflow:hidden; }
 #content-cards { position:absolute; top:0; left:0; right:0; bottom:0; /*background: url("/static/images/slides_cards-nq8.png") no-repeat scroll left top transparent;*/  }
 #content-text { position:absolute; top:0; left:0; right:0; bottom:0; /*background: url("/static/images/slides_text_wire_corners-nq8.png") no-repeat scroll left top transparent; */ }
 
@@ -179,12 +179,13 @@ body, html { margin:0; padding:0; background-color:/*#fd8c80*/ white; }
         height: 26px; margin: 0; outline: medium none; overflow: hidden; padding: 0; position: absolute; right: 0;
         text-indent: -9988px; width: 84px; cursor:pointer; }
 #personal-link { background: none repeat scroll 0 0 transparent; border: none; box-shadow: none; font-size: 17px;
-        height: 26px; left: 243px; outline: medium none; padding: 7px 10px; position: absolute; top: 515px; width: 366px; }
+        height: 26px; left: 243px; outline: medium none; padding: 7px 10px; position: absolute; top: 515px; width: 366px;
+        font-family:"letter-gothic-std",monospace; color: #7F767E; }
 #sharebox { left: 327px; min-width: 42px; min-height: 42px; overflow: hidden; position: absolute; top: 570px; }
 .shareitem { width:42px; height:42px; display:block;float:left; margin-right:15px; cursor:pointer; }
 #backstretch { z-index:100 !important; }
 #wrap { display:none; }
-#email_screen { width:100%; height:100%; position:fixed; /*min-width:800px; min-height: 600px;*/ z-index:101; }
+#email_screen { width:100%; height:100%; position:fixed; /*min-width:800px; min-height: 600px;*/ z-index:101;;}
 
 
 .form-list { list-style:none; margin:0; padding:0; }
@@ -193,7 +194,7 @@ body, html { margin:0; padding:0; background-color:/*#fd8c80*/ white; }
         padding: 227px 131px 46px 96px; margin:0; width: 593px ; height: 267px; position:absolute; margin-top:-312px; top: 50%;
         right:50%; left:auto; text-align: center; color:#000; border:none; background-color:transparent; cursor:auto; 
         font-size:18px; font-weight:bold; font-family:"letter-gothic-std",monospace; text-transform: uppercase;
-        margin-right: -430px;  }
+        margin-right: -460px;  }
         
 .block_popup_inner { background:white; padding:15px; width: 563px ; height: 237px; position:relative; }
 label[for=terms] { width: auto; }
@@ -234,7 +235,7 @@ label[for=terms] { width: auto; }
     padding:0 0 0 21px; background: url("../../images/dot_arrow_right.png") no-repeat scroll right 20px transparent; }*/
     { background: url("/static/images/dot_arrow_right.png") no-repeat scroll right 2px transparent;border:none; color: white;
     display: block; font-family: "letter-gothic-std",monospace; font-size: 17px; height: 23px; width: 184px; line-height: 23px;
-    padding: 0 0 0 21px; margin-right: 12px; position: absolute; left: 0; margin-top: -9px; top: 50%; text-align: left; 
+    padding: 0 0 0 21px; margin-right: 12px; position: absolute; left: 0; margin-top: -10px; top: 50%; text-align: left; 
     letter-spacing: 0.7px; }
     
 .block_popup .popup_content .form-list input /*{ width: 278px; height: 37px; border:none;outline:none; line-height: 37px;
