@@ -250,4 +250,17 @@ label[for=terms] { width: auto; }
 .block_popup .popup_content .form-list li .validation-advice { position:absolute; bottom:-14px;  }
 /*#become_member { cursor:pointer;font-weight:bold; }*/
   
-
+#gifts .money{
+  background: url("/static/images/gifts.png") 0px 24px no-repeat;
+    height: 250px;
+    right: 240px;
+    position: absolute;
+    top: 312px;
+    width: 187px;
+}
+#gifts .money span {
+    border-bottom: 1px dotted #c7c7c7;
+    color: #ff6f67;
+    font-size: 17px;
+    font-style: italic;
+}

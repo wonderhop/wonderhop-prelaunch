@@ -101,6 +101,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
     </script>
 </head>
 <body>
+<?php if (!isset($_COOKIE['prewh_email'])): ?>
 <div id="email_screen">
     <script type="text/javascript">
        jQuery.backstretch('/static/images/overlay.jpg');
@@ -255,14 +256,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                         });
                         
                         
-                        $(document).ready(function(){
-							if (getCookie('prewh_email')) {
-								setTimeout(function(){
-									$('#email').val(getCookie('prewh_email'));
-									$regForm.submit();
-								}, 500);
-							}
-                        });
+                       
                         
                     })(jQuery)
                     
@@ -280,8 +274,15 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
     <!--</div>-->
     
 </div>
-
-<div id="wrap">
+<?php endif; ?>
+<script>
+     $(document).ready(function(){ 
+		if (getCookie('prewh_email')) {
+			$.scrollTo(9300);  
+		}
+    });
+</script>
+<div id="wrap" <?php if (isset($_COOKIE['prewh_email'])): ?> style="display:block;" <?php endif; ?>>
     
     <div id="content-back" data-stellar-background-ratio="0.7">
         <div class="backslide backslide-1"><div class="back cblue bcdarkpurple"></div><div class="backwhite"></div></div>
@@ -413,7 +414,11 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                         <input id="cloud_invite_input" class="invite-emails input-text required-entry" size="150" rel="1" type="text" name="emails" value="" />
                         <button id="cloud_invite_submit" type="submit" title="Send Invite" class="button"><span><span>Send</span></span></button>
                     </form>
-                    
+                    <div id="gifts" style="display:none">
+                        <div class="money">
+                            <span>YOU'VE EARNED $60!</span>
+                        </div>
+                    </div>
                     <input type="text" id="personal-link" value="" onfocus="setTimeout(function(){jQuery('#personal-link').select();}, 100);"/>
                     
                     <div id="sharebox">
