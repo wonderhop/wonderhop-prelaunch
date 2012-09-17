@@ -1,4 +1,6 @@
 <?php
+include 'Mail.php';
+include 'Mail/mime.php' ;
 
 function is_post()
 {
@@ -98,9 +100,41 @@ function subscriber($email_or_id_or_token, $fields = '`id`,`email`,`personal_tok
 }
 
 
-function send_confirm_email($email, $token)
-{
-    mail($email, 'Email Confirmation', BASEURL . "?c=$token");
+function send_confirm_email($email, $token) {
+ 
+    $text = BASEURL . "?c=$token";
+    send_sendgrid_email($email, $text, $text, 'Email Confirmation');
+}
+
+function send_invitation_email($email) {
+ 
+    $text = personal_link($_COOKIE['prewh_email'], 1);
+    send_sendgrid_email($email, $text, $text, 'Email Invitation');
+}
+
+function send_sendgrid_email($email, $text, $html, $subject) {
+    
+    $crlf = "\n";
+    $hdrs = array(
+                  'From'    => 'andrei@sinapticode.ro',
+                  'Subject' => $subject
+                  );
+
+    $mime = new Mail_mime(array('eol' => $crlf));
+
+    $mime->setTXTBody($text);
+    $mime->setHTMLBody($html);
+
+    $body = $mime->get();
+    $hdrs = $mime->headers($hdrs);
+
+    $mail =& Mail::factory('smtp', array(
+	    'host' => 'smtp.sendgrid.net',
+	    'auth' => true,
+	    'username' => 'wonderhop',
+	    'password' => 'd3l16ht'
+    ));
+    $mail->send($email, $hdrs, $body);
 }
 
 
