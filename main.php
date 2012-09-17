@@ -112,13 +112,42 @@ function personal_link($email, $as_get_param = false)
 
 function gen_personal_token($email)
 {
-    return md5(B_SALT . $email . E_SALT);
+    //return md5(B_SALT . $email . E_SALT);
+    return genRefCode();
 }
 
 function gen_confirm_token($email)
 {
     return md5(E_SALT . $email . B_SALT);
 }
+
+
+function _generateReferralCode($len = 6)
+{
+	$hex = md5("referral" . uniqid("", true));
+	$pack = pack('H*', $hex);
+	$tmp =  base64_encode($pack);
+	$uid = preg_replace("#(*UTF8)[^A-Za-z0-9]#", "", $tmp);
+	$len = max(4, min(128, $len));
+	while (strlen($uid) < $len)
+		$uid .= gen_uuid(22);
+	return substr($uid, 0, $len);
+}
+
+function genRefCode($len = 6)
+{
+	$code = _generateReferralCode($len);
+	while(refCodeExists( $code )) {
+		$code = _generateReferralCode($len);
+	}
+	return $code;
+}
+
+function refCodeExists($code)
+{
+	return db()->query("select id from subscribers where personal_token = '{$code}';")->fetchAll() ? true : false;
+}
+
 
 function confirm($token)
 {

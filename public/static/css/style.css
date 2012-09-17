@@ -173,14 +173,14 @@ body, html { margin:0; padding:0; background-color:/*#fd8c80*/ white; }
 .csicon.cloudsponge_msn { width:100px; }
 .csicon.invite-import-aol { width: 55px; }
 #cloud_invite_input { background: none repeat scroll 0 0 transparent; box-shadow: none; font-size: 17px; height: 26px;
-        left: 3px; outline: medium none; padding: 7px 10px; position: absolute; top: 90px; width: 366px;
-        border:none;  }
+        left: 3px; outline: medium none; padding: 12px 10px 7px 10px; position: absolute; top: 90px; width: 368px;
+        border:none; font-family:"letter-gothic-std",monospace; color: #7F767E;  }
 #cloud_invite_submit {  background: none repeat scroll 0 0 transparent; border: medium none; bottom: 0; box-shadow: none;
         height: 26px; margin: 0; outline: medium none; overflow: hidden; padding: 0; position: absolute; right: 0;
         text-indent: -9988px; width: 84px; cursor:pointer; }
 #personal-link { background: none repeat scroll 0 0 transparent; border: none; box-shadow: none; font-size: 17px;
-        height: 26px; left: 243px; outline: medium none; padding: 7px 10px; position: absolute; top: 515px; width: 366px;
-        font-family:"letter-gothic-std",monospace; color: #7F767E; }
+        height: 26px; left: 243px; outline: medium none; padding: 12px 10px 7px 10px; position: absolute; top: 515px;
+        width: 368px; font-family:"letter-gothic-std",monospace; color: #7F767E; }
 #sharebox { left: 327px; min-width: 42px; min-height: 42px; overflow: hidden; position: absolute; top: 570px; }
 .shareitem { width:42px; height:42px; display:block;float:left; margin-right:15px; cursor:pointer; }
 #backstretch { z-index:100 !important; }

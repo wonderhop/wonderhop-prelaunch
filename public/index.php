@@ -76,6 +76,28 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                 })(jQuery);
             }
         }
+        
+        function setCookie (c_name, value, exp, as_seconds)
+		{
+			var exdate = new Date( (new Date().getTime()) + (exp * (as_seconds ? 1000 : (1000 * 60 * 60 * 24))) );
+			var c_value=escape(value) + ((exp==null) ? "" : "; expires="+exdate.toUTCString());
+			document.cookie=c_name + "=" + c_value+"; path=/";
+		}
+		
+		
+		function getCookie (c_name)
+		{
+			var i, x, y, ARRcookies = document.cookie.split(";");
+			for (i=0; i<ARRcookies.length; i++) {
+				x = ARRcookies[i].substr( 0, ARRcookies[i].indexOf("=") );
+				y = ARRcookies[i].substr( ARRcookies[i].indexOf("=") + 1 );
+				x = x.replace( /^\s+|\s+$/g , "" );
+				if ( x == c_name ) {
+					return unescape(y);
+				}
+			}
+		}
+        
     </script>
 </head>
 <body>
@@ -179,6 +201,9 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                         Subscriber.confirmed = parseInt(Subscriber.confirmed) ? true : false;
                                         Subscriber.slideshowed = parseInt(Subscriber.slideshowed) ? true : false;
                                         Subscriber.personal_link = resp.personal_link;
+                                        if ( ! getCookie('prewh_email')) {
+											setCookie('prewh_email',Subscriber.email,15);
+										}
                                         //if ( ! Subscriber.confirmed) {
                                         //    console.log('gigi');
                                         //    $('.popup_title').html('Confirmation needed !<br/>');
@@ -196,19 +221,21 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                             height:'auto',
                                             overflow:$html.css('overflow')
                                         }
-                                        $('html').css({position:'fixed', width:'100%', height:'100%', overflow:'hidden'});
-                                        $('#wrap').fadeIn('fast').delay(300);
+                                        //$('html').css({position:'fixed', width:'100%', height:'100%', overflow:'hidden'});
+                                        //$('#wrap').fadeIn('fast').delay(300);
+                                        $('#wrap').show();
+                                        if (resp.existing && Subscriber.slideshowed) {
+											$.scrollTo(9300);
+                                        } else {
+											slideshowing(Subscriber);
+                                        }
                                         $('#email_screen').animate(css, {
-                                            duration: 400,
+                                            duration: 800 ,
                                             easing: 'swing',
                                             complete: function(){
                                                 $('#email_screen').delay(300).hide().remove();
-                                                $html.css(htmlcss);
-                                                if (resp.existing && Subscriber.slideshowed) {
-                                                    $.scrollTo(9300,0);
-                                                } else {
-                                                    slideshowing(Subscriber);
-                                                }
+                                                //$html.css(htmlcss);
+                                                
                                                 $('#personal-link').val(resp.personal_link);
                                             },
                                             queue:false,
@@ -226,6 +253,17 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                 
                             });
                         });
+                        
+                        
+                        $(document).ready(function(){
+							if (getCookie('prewh_email')) {
+								setTimeout(function(){
+									$('#email').val(getCookie('prewh_email'));
+									$regForm.submit();
+								}, 500);
+							}
+                        });
+                        
                     })(jQuery)
                     
                     function input_error()
@@ -277,16 +315,16 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
             <div class="card card-11 card_page"></div>
         </div>
         <div id="content-text" class="cnt">
-            <div class="ctext ctext-1"><div class="ctext-back-1"></div><img class="ctext-img-1" src="/static/images/texts/text_1-nq8.png" /></div>
-            <div class="ctext ctext-2"><div class="ctext-back-2"></div><img class="ctext-img-2" src="/static/images/texts/text_2-nq8.png" /></div>
-            <div class="ctext ctext-3"><div class="prod_img prod_img-3"><img class="prod-img-3" src="/static/images/prod_img/1/prod_img_3.jpg" /></div><div class="ctext-back-3"></div><img class="ctext-img-3" src="/static/images/texts/text_3-nq8.png" /></div>
-            <div class="ctext ctext-4"><div class="prod_img prod_img-4"><img class="prod-img-4" src="/static/images/prod_img/1/prod_img_4.jpg" /></div><div class="ctext-back-4"></div><img class="ctext-img-4" src="/static/images/texts/text_4-nq8.png" /></div>
-            <div class="ctext ctext-5"><div class="prod_img prod_img-5"><img class="prod-img-5" src="/static/images/prod_img/1/prod_img_5.jpg" /></div><div class="ctext-back-5"></div><img class="ctext-img-5" src="/static/images/texts/text_5-nq8.png" /></div>
-            <div class="ctext ctext-6"><div class="prod_img prod_img-6"><img class="prod-img-6" src="/static/images/prod_img/1/prod_img_6.jpg" /></div><div class="ctext-back-6"></div><img class="ctext-img-6" src="/static/images/texts/text_6-nq8.png" /></div>
-            <div class="ctext ctext-7"><div class="prod_img prod_img-7"><img class="prod-img-7" src="/static/images/prod_img/1/prod_img_7.jpg" /></div><div class="ctext-back-7"></div><img class="ctext-img-7" src="/static/images/texts/text_7-nq8.png" /></div>
-            <div class="ctext ctext-8"><div class="prod_img prod_img-8"><img class="prod-img-8" src="/static/images/prod_img/1/prod_img_8.jpg" /></div><div class="ctext-back-8"></div><img class="ctext-img-8" src="/static/images/texts/text_8-nq8.png" /></div>
-            <div class="ctext ctext-9"><div class="prod_img prod_img-9"><img class="prod-img-9" src="/static/images/prod_img/1/prod_img_9.jpg" /></div><div class="ctext-back-9"></div><img class="ctext-img-9" src="/static/images/texts/text_9-nq8.png" /></div>
-            <div class="ctext ctext-10"><div class="ctext-back-10"></div><img class="ctext-img-10" src="/static/images/texts/text_10-nq8.png" /></div>
+            <div class="ctext ctext-1"><div class="ctext-back-1"></div><img class="ctext-img-1" src="/static/images/texts/text_1.png" /></div>
+            <div class="ctext ctext-2"><div class="ctext-back-2"></div><img class="ctext-img-2" src="/static/images/texts/text_2.png" /></div>
+            <div class="ctext ctext-3"><div class="prod_img prod_img-3"><img class="prod-img-3" src="/static/images/prod_img/1/prod_img_3.jpg" /></div><div class="ctext-back-3"></div><img class="ctext-img-3" src="/static/images/texts/text_3.png" /></div>
+            <div class="ctext ctext-4"><div class="prod_img prod_img-4"><img class="prod-img-4" src="/static/images/prod_img/1/prod_img_4.jpg" /></div><div class="ctext-back-4"></div><img class="ctext-img-4" src="/static/images/texts/text_4.png" /></div>
+            <div class="ctext ctext-5"><div class="prod_img prod_img-5"><img class="prod-img-5" src="/static/images/prod_img/1/prod_img_5.jpg" /></div><div class="ctext-back-5"></div><img class="ctext-img-5" src="/static/images/texts/text_5.png" /></div>
+            <div class="ctext ctext-6"><div class="prod_img prod_img-6"><img class="prod-img-6" src="/static/images/prod_img/1/prod_img_6.jpg" /></div><div class="ctext-back-6"></div><img class="ctext-img-6" src="/static/images/texts/text_6.png" /></div>
+            <div class="ctext ctext-7"><div class="prod_img prod_img-7"><img class="prod-img-7" src="/static/images/prod_img/1/prod_img_7.jpg" /></div><div class="ctext-back-7"></div><img class="ctext-img-7" src="/static/images/texts/text_7.png" /></div>
+            <div class="ctext ctext-8"><div class="prod_img prod_img-8"><img class="prod-img-8" src="/static/images/prod_img/1/prod_img_8.jpg" /></div><div class="ctext-back-8"></div><img class="ctext-img-8" src="/static/images/texts/text_8.png" /></div>
+            <div class="ctext ctext-9"><div class="prod_img prod_img-9"><img class="prod-img-9" src="/static/images/prod_img/1/prod_img_9.jpg" /></div><div class="ctext-back-9"></div><img class="ctext-img-9" src="/static/images/texts/text_9.png" /></div>
+            <div class="ctext ctext-10"><div class="ctext-back-10"></div><img class="ctext-img-10" src="/static/images/texts/text_10.png" /></div>
             
             <!-- inite page -->
             <!-- Include these scripts to import address books with CloudSponge -->
@@ -345,7 +383,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
             <div class="ctext ctext-11">
                 <div class="ctext-back-11"></div>
                 <!--<img class="ctext-img-11" src="/static/images/invite_page-nq8.png" />-->
-                <img class="ctext-img-11" src="/static/images/texts/text_11_1-nq8.png" />
+                <img class="ctext-img-11" src="/static/images/texts/text_11_1.png" />
                 <div class="elements_container" style="position:absolute;overflow:hidden;width:100%;height:100%;">
                     
                     <div id="popup-overlay" style="display:none"></div>
