@@ -97,7 +97,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
 				}
 			}
 		}
-        
+		 
     </script>
 </head>
 <body>
@@ -227,6 +227,9 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                         $('#wrap').show();
                                         if (resp.existing && Subscriber.slideshowed) {
 											$.scrollTo(9300);
+											if (getCookie('prewh_email')) {
+                                               $('#wrap').css('visibility', 'visible');
+                                            }
                                         } else {
 											slideshowing(Subscriber);
                                         }
@@ -243,6 +246,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                         });
                                         
                                         //$('#email_screen, #backstretch').delay(300).fadeOut(800);
+                                        
                                     } else {
                                         input_error($('#email',$regForm), 'Email address invalid or server error !');
                                         if (resp.redirect) {
@@ -257,9 +261,11 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                         
                         
                         $(document).ready(function(){
+                           
 							if (getCookie('prewh_email')) {
 									$('#email').val(getCookie('prewh_email'));
 									$regForm.submit();
+									
 							}
                         });
                         
@@ -280,7 +286,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
     
 </div>
 
-<div id="wrap" <?php if (isset($_COOKIE['prewh_email'])): ?> style="display:block" <?php endif; ?>>
+<div id="wrap" <?php if (isset($_COOKIE['prewh_email'])): ?> style="display:block; visibility: hidden;" <?php endif; ?>>
     
     <div id="content-back" data-stellar-background-ratio="0.7">
         <div class="backslide backslide-1"><div class="back cblue bcdarkpurple"></div><div class="backwhite"></div></div>
