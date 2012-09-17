@@ -79,7 +79,7 @@ function newemail_save($email, $invited_by = NULL)
         $fields .= ',invited_by';
         $vph .= ',?';
         $values[] = $inviter['id'];
-        send_email($email, $values[2]); 
+        send_confirm_email($email, $values[2]); 
     }
     $fields .=  ')';
     $vph .=  ')';
@@ -98,7 +98,7 @@ function subscriber($email_or_id_or_token, $fields = '`id`,`email`,`personal_tok
 }
 
 
-function send_email($email, $token)
+function send_confirm_email($email, $token)
 {
     mail($email, 'Email Confirmation', BASEURL . "?c=$token");
 }
