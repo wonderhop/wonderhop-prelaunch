@@ -13,6 +13,10 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
 <head>
     <title>Wondrohp opens soon !</title>
     <meta http-equiv="Content-Type" name="content-type" content="text/html; charset=UTF-8" />
+    <meta name="title" content="Wonderhop | Unique finds for an inspired life" />
+    <meta name="description" content="Join the thousands who use Wonderhop to discover uniquely lovely jewelry, home décor and gifts, all at great prices. Get inspired today!" />
+    
+    <link rel="image_src" type="image/jpeg" href="/static/images/fb_thumb.jpeg" />
     <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Cantata+One">
     <link rel="stylesheet" type="text/css" href="static/css/style.css"/>
     <style>
@@ -78,26 +82,26 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
         }
         
         function setCookie (c_name, value, exp, as_seconds)
-		{
-			var exdate = new Date( (new Date().getTime()) + (exp * (as_seconds ? 1000 : (1000 * 60 * 60 * 24))) );
-			var c_value=escape(value) + ((exp==null) ? "" : "; expires="+exdate.toUTCString());
-			document.cookie=c_name + "=" + c_value+"; path=/";
-		}
-		
-		
-		function getCookie (c_name)
-		{
-			var i, x, y, ARRcookies = document.cookie.split(";");
-			for (i=0; i<ARRcookies.length; i++) {
-				x = ARRcookies[i].substr( 0, ARRcookies[i].indexOf("=") );
-				y = ARRcookies[i].substr( ARRcookies[i].indexOf("=") + 1 );
-				x = x.replace( /^\s+|\s+$/g , "" );
-				if ( x == c_name ) {
-					return unescape(y);
-				}
-			}
-		}
-		 
+        {
+            var exdate = new Date( (new Date().getTime()) + (exp * (as_seconds ? 1000 : (1000 * 60 * 60 * 24))) );
+            var c_value=escape(value) + ((exp==null) ? "" : "; expires="+exdate.toUTCString());
+            document.cookie=c_name + "=" + c_value+"; path=/";
+        }
+        
+        
+        function getCookie (c_name)
+        {
+            var i, x, y, ARRcookies = document.cookie.split(";");
+            for (i=0; i<ARRcookies.length; i++) {
+                x = ARRcookies[i].substr( 0, ARRcookies[i].indexOf("=") );
+                y = ARRcookies[i].substr( ARRcookies[i].indexOf("=") + 1 );
+                x = x.replace( /^\s+|\s+$/g , "" );
+                if ( x == c_name ) {
+                    return unescape(y);
+                }
+            }
+        }
+         
     </script>
 </head>
 <body>
@@ -203,8 +207,8 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                         Subscriber.slideshowed = parseInt(Subscriber.slideshowed) ? true : false;
                                         Subscriber.personal_link = resp.personal_link;
                                         if ( ! getCookie('prewh_email')) {
-											setCookie('prewh_email',Subscriber.email,15);
-										}
+                                            setCookie('prewh_email',Subscriber.email,15);
+                                        }
                                         //if ( ! Subscriber.confirmed) {
                                         //    console.log('gigi');
                                         //    $('.popup_title').html('Confirmation needed !<br/>');
@@ -226,12 +230,12 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                         //$('#wrap').fadeIn('fast').delay(300);
                                         $('#wrap').show();
                                         if (resp.existing && Subscriber.slideshowed) {
-											$.scrollTo(9300);
-											if (getCookie('prewh_email')) {
+                                            $.scrollTo(9300);
+                                            if (getCookie('prewh_email')) {
                                                $('#wrap').css('visibility', 'visible');
                                             }
                                         } else {
-											slideshowing(Subscriber);
+                                            slideshowing(Subscriber);
                                         }
                                         $('#email_screen').animate(css, {
                                             duration: 800 ,
@@ -262,11 +266,11 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                         
                         $(document).ready(function(){
                            
-							if (getCookie('prewh_email')) {
-									$('#email').val(getCookie('prewh_email'));
-									$regForm.submit();
-									
-							}
+                            if (getCookie('prewh_email')) {
+                                    $('#email').val(getCookie('prewh_email'));
+                                    $regForm.submit();
+                                    
+                            }
                         });
                         
                     })(jQuery)
