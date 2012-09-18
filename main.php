@@ -107,9 +107,15 @@ function send_confirm_email($email, $token) {
 
 function send_invitation_email($email) {
     
-    $text = personal_link($_COOKIE['prewh_email'], 1);
-    $body = get_email($email, $text);
-    send_sendgrid_email($email, $body, $body, 'Email Invitation');
+    $confirmation_token = personal_link($_COOKIE['prewh_email'], 1);
+    $body = get_email($email, $confirmation_token);
+    $text = "CONGRATS! $email just invited you to join WonderHop. \n
+            You can now access WonderHop's invite-only daily magazine of gorgeous and unique finds for home, style, and family all at up to 60% off! 
+            \n
+            WonderHop membership is free, but spots are limited. click below to accept your invitation - but hurry, spots are going fast! \n
+            Click here: <a href=\"$confirmation_token\">ACCEPT YOUR INVITATION</a> or copy this $confirmation_token into your browser.
+    ";
+    send_sendgrid_email($email, $text, $body, 'Email Invitation');
 }
 
 function send_sendgrid_email($email, $text, $html, $subject) {
