@@ -66,7 +66,7 @@ function existing_subscriber($email_or_id_or_token)
     return ($q->execute(array($val)) and ($res = $q->fetchAll(PDO::FETCH_ASSOC))) ? $res[0]['id'] : false ;
 }
 */
-function newemail_save($email, $invited_by = NULL)
+function newemail_save($email, $invited_by = NULL, $no_confirm = false)
 {
     error_log($invited_by);
     list($fields,$values, $vph, $inviter) = 
@@ -81,7 +81,7 @@ function newemail_save($email, $invited_by = NULL)
         $fields .= ',invited_by';
         $vph .= ',?';
         $values[] = $inviter['id'];
-        send_confirm_email($email, $values[2]); 
+        if( ! $no_confirm) send_confirm_email($email, $values[2], $inviter['email'], $inviter['personal_token']); 
     }
     $fields .=  ')';
     $vph .=  ')';
@@ -99,30 +99,43 @@ function subscriber($email_or_id_or_token, $fields = '`id`,`email`,`personal_tok
     return ($q->execute(array($id)) and ($res = $q->fetchAll(PDO::FETCH_ASSOC))) ? $res[0] : false ;
 }
 
+function invited_friendcount($email)
+{
+    //return 10;
+    $sub = subscriber($email);
+    if ( ! $sub) return 0;
+    $res = db()->query("select count(*) from subscribers where `invited_by` = {$sub['id']} and confirmed = 1;")->fetchAll();
+    error_log(print_r($res,true));
+    return isset($res[0][0]) ? $res[0][0] : 0;
+}
 
-function send_confirm_email($email, $token) {
-    $body = get_confirmation_email($email, BASEURL . "?c=$token");
+
+function send_confirm_email($email, $token, $inviter_email, $inviter_token) {
+    $body = get_confirmation_email($email, BASEURL . "?c=$token&r=$inviter_token", $inviter_email);
     send_sendgrid_email($email, $body, $body, 'Email Confirmation');
 }
 
-function send_invitation_email($email) {
-    
-    $confirmation_token = personal_link($_COOKIE['prewh_email'], 1);
-    $body = get_email($email, $confirmation_token);
-    $text = "CONGRATS! $email just invited you to join WonderHop. \n
+function send_invitation_email($email, $confirmation_token, $inviter_email, $inviter_token)
+{    
+    $confirmation_link = personal_link($inviter_email, 1) . '&c=' . $confirmation_token;
+    $body = get_email($email, $confirmation_link, $inviter_email);
+    $text = "CONGRATS! $inviter_email just invited you to join WonderHop. \n
             You can now access WonderHop's invite-only daily magazine of gorgeous and unique finds for home, style, and family all at up to 60% off! 
             \n
             WonderHop membership is free, but spots are limited. click below to accept your invitation - but hurry, spots are going fast! \n
-            Click here: <a href=\"$confirmation_token\">ACCEPT YOUR INVITATION</a> or copy this $confirmation_token into your browser.
+            Click here: <a href=\"$confirmation_link\">ACCEPT YOUR INVITATION</a> or copy this $confirmation_link into your browser.
     ";
-    send_sendgrid_email($email, $text, $body, 'Email Invitation');
+    //error_log($text);
+    //error_log($email);
+    //error_log($body);
+    send_sendgrid_email($email, $text, $body, "$inviter_email invited you to wonderhop.com");
 }
 
 function send_sendgrid_email($email, $text, $html, $subject) {
     
     $crlf = "\n";
     $hdrs = array(
-                  'From'    => 'andrei@sinapticode.ro',
+                  'From'    => 'contact@wonderhop.com',
                   'Subject' => $subject
                   );
 
@@ -135,15 +148,15 @@ function send_sendgrid_email($email, $text, $html, $subject) {
     $hdrs = $mime->headers($hdrs);
 
     $mail =& Mail::factory('smtp', array(
-	    'host' => 'smtp.sendgrid.net',
-	    'auth' => true,
-	    'username' => 'wonderhop',
-	    'password' => 'd3l16ht'
+        'host' => 'smtp.sendgrid.net',
+        'auth' => true,
+        'username' => 'wonderhop',
+        'password' => 'd3l16ht'
     ));
     $mail->send($email, $hdrs, $body);
 }
 
-function get_confirmation_email($email, $token_url) {
+function get_confirmation_email($email, $token_url, $inviter_email) {
     $img_url = BASEURL . 'static/images/newsletter/wonderhop_invite/';
     
     $body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -170,68 +183,68 @@ width: 100%;}    </style>
   <td>
 <table cellpadding="0" cellspacing="0" border="0" align="center" width="535" bgcolor="#ffffff">
 
-	<tr>
-		<td align="left" valign="top" height="16"><img alt="WonderHop" border="0" height="16" src="' . $img_url . 'wonderhop_01.png" style="display:block" width="535" /></td>
-	</tr>
-	
-  	<tr>
-  		<td align="center">
-			<table cellpadding="0" cellspacing="0" border="0" align="center" width="535" bgcolor="#ffffff">
-				<tr>
-					<td align="left" valign="top" width="112"><img alt="WonderHop" border="0" height="153" src="' . $img_url . 'wonderhop_02.png" style="display:block" width="112" /></td>
-					<td align="center" valign="top" width="323"><a href="http://www.wonderhop.com" title="WonderHop" target="_blank"><img alt="WonderHop" border="0" height="78" src="' . $img_url . 'wonderhop_logo.png" style="display:block" width="321" /></a><br />
-					<font color="#fd706b" size="+1" face="georgia">CONGRATS! <i>' . $email . '</i> just invited you to join WonderHop.</font></td>
-					<td align="left" valign="top" width="100"> </td>
-				</tr>
-			</table>			
-		</td>
-  	</tr>
-	
-	<tr>
-		<td align="left" valign="middle" height="40"><img alt="WonderHop line" border="0" height="4" src="' . $img_url . 'wonderhop_03.png" style="display:block" width="535" /></td>
-	</tr>
-	
-	<tr>
-  		<td align="center">
-			<table cellpadding="0" cellspacing="0" border="0" align="center" width="535" bgcolor="#ffffff">
-				<tr>
-					<td align="left" valign="top" width="70"></td>
-					
-					<td align="center" valign="top" width="395">
-						<table cellpadding="0" cellspacing="0" border="0" align="center" width="395">
-							<tr>
-								<td width="15" bgcolor="#fff9df"></td>
-								<td align="center" valign="top" width="365" bgcolor="#fff9df"><br /><font color="#7f767e" size="+0" face="georgia"><i>You can now access WonderHop\'s invite-only daily magazine of gorgeous and unique finds for home, style, and family <font color="#ff7267">all at up to 60% off!</font>
-								<br /><br />
-								WonderHop membership is free, but spots are limited. click below to accept your invitation - but hurry, spots are going fast!</i></font><br /><br /></td>
-								<td width="15" bgcolor="#fff9df"></td>
-							</tr>
-							
-							<tr>
-								<td width="15"></td>
-								<td align="center" valign="top" width="365"><br />
-								<a href="'. $token_url .'" title="Accept your invitation" target="_blank"><img alt="Accept your invitation" border="0" height="40" src="' . $img_url . 'accept.png" style="display:block" width="240" /></a>
-								<br />
-								<a href="https://www.facebook.com/wonderhop" title="WonderHop on Facebook" target="_blank"><img alt="WonderHop on Facebook" border="0" height="29" src="' . $img_url . 'facebook.png" width="31" /></a> &nbsp; <a href="https://twitter.com/wonderhop" title="WonderHop on Twitter" target="_blank"><img alt="WonderHop on Twitter" border="0" height="29" src="' . $img_url . 'twitter.png" width="32" /></a>
-								<br />
-								<a href="https://www.facebook.com/wonderhop" title="WonderHop on Facebook" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">FACEBOOK</font></a> &nbsp;&nbsp;  <a href="https://twitter.com/wonderhop" title="WonderHop on Twitter" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">TWITTER</font></a> &nbsp;&nbsp;&nbsp;
-								<br /><br /></td>
-								<td width="15"></td>
-							</tr>
-							
-						</table>
-					</td>
-					<td align="right" valign="bottom" width="70"><img alt="WonderHop" border="0" height="186" src="' . $img_url . 'wonderhop_04.png" style="display:block" width="44" /></td>
-				</tr>
-			</table>			
-		</td>
-  	</tr>
-	
-	
-	<tr>
-		<td align="left" valign="top" height="25"><img alt="WonderHop" border="0" height="25" src="' . $img_url . 'wonderhop_05.png" style="display:block" width="535" /></td>
-	</tr>
-	
+    <tr>
+        <td align="left" valign="top" height="16"><img alt="WonderHop" border="0" height="16" src="' . $img_url . 'wonderhop_01.png" style="display:block" width="535" /></td>
+    </tr>
+    
+    <tr>
+        <td align="center">
+            <table cellpadding="0" cellspacing="0" border="0" align="center" width="535" bgcolor="#ffffff">
+                <tr>
+                    <td align="left" valign="top" width="112"><img alt="WonderHop" border="0" height="153" src="' . $img_url . 'wonderhop_02.png" style="display:block" width="112" /></td>
+                    <td align="center" valign="top" width="323"><a href="http://www.wonderhop.com" title="WonderHop" target="_blank"><img alt="WonderHop" border="0" height="78" src="' . $img_url . 'wonderhop_logo.png" style="display:block" width="321" /></a><br />
+                    <font color="#fd706b" size="+1" face="georgia">CONGRATS! <i>' . $inviter_email . '</i> just invited you to join WonderHop.</font></td>
+                    <td align="left" valign="top" width="100"> </td>
+                </tr>
+            </table>            
+        </td>
+    </tr>
+    
+    <tr>
+        <td align="left" valign="middle" height="40"><img alt="WonderHop line" border="0" height="4" src="' . $img_url . 'wonderhop_03.png" style="display:block" width="535" /></td>
+    </tr>
+    
+    <tr>
+        <td align="center">
+            <table cellpadding="0" cellspacing="0" border="0" align="center" width="535" bgcolor="#ffffff">
+                <tr>
+                    <td align="left" valign="top" width="70"></td>
+                    
+                    <td align="center" valign="top" width="395">
+                        <table cellpadding="0" cellspacing="0" border="0" align="center" width="395">
+                            <tr>
+                                <td width="15" bgcolor="#fff9df"></td>
+                                <td align="center" valign="top" width="365" bgcolor="#fff9df"><br /><font color="#7f767e" size="+0" face="georgia"><i>You can now access WonderHop\'s invite-only daily magazine of gorgeous and unique finds for home, style, and family <font color="#ff7267">all at up to 60% off!</font>
+                                <br /><br />
+                                WonderHop membership is free, but spots are limited. click below to accept your invitation - but hurry, spots are going fast!</i></font><br /><br /></td>
+                                <td width="15" bgcolor="#fff9df"></td>
+                            </tr>
+                            
+                            <tr>
+                                <td width="15"></td>
+                                <td align="center" valign="top" width="365"><br />
+                                <a href="'. $token_url .'" title="Accept your invitation" target="_blank"><img alt="Accept your invitation" border="0" height="40" src="' . $img_url . 'accept.png" style="display:block" width="240" /></a>
+                                <br />
+                                <a href="https://www.facebook.com/wonderhop" title="WonderHop on Facebook" target="_blank"><img alt="WonderHop on Facebook" border="0" height="29" src="' . $img_url . 'facebook.png" width="31" /></a> &nbsp; <a href="https://twitter.com/wonderhop" title="WonderHop on Twitter" target="_blank"><img alt="WonderHop on Twitter" border="0" height="29" src="' . $img_url . 'twitter.png" width="32" /></a>
+                                <br />
+                                <a href="https://www.facebook.com/wonderhop" title="WonderHop on Facebook" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">FACEBOOK</font></a> &nbsp;&nbsp;  <a href="https://twitter.com/wonderhop" title="WonderHop on Twitter" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">TWITTER</font></a> &nbsp;&nbsp;&nbsp;
+                                <br /><br /></td>
+                                <td width="15"></td>
+                            </tr>
+                            
+                        </table>
+                    </td>
+                    <td align="right" valign="bottom" width="70"><img alt="WonderHop" border="0" height="186" src="' . $img_url . 'wonderhop_04.png" style="display:block" width="44" /></td>
+                </tr>
+            </table>            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td align="left" valign="top" height="25"><img alt="WonderHop" border="0" height="25" src="' . $img_url . 'wonderhop_05.png" style="display:block" width="535" /></td>
+    </tr>
+    
 </table>
 </td>
  </tr>
@@ -248,9 +261,8 @@ width: 100%;}    </style>
     return $body;
 }
 
-function get_email($email, $token_url) {
+function get_email($email, $token_url, $inviter_email) {
     $img_url = BASEURL . 'static/images/newsletter/wonderhop_invite/';
-    
     $body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -275,68 +287,68 @@ width: 100%;}    </style>
   <td>
 <table cellpadding="0" cellspacing="0" border="0" align="center" width="535" bgcolor="#ffffff">
 
-	<tr>
-		<td align="left" valign="top" height="16"><img alt="WonderHop" border="0" height="16" src="' . $img_url . 'wonderhop_01.png" style="display:block" width="535" /></td>
-	</tr>
-	
-  	<tr>
-  		<td align="center">
-			<table cellpadding="0" cellspacing="0" border="0" align="center" width="535" bgcolor="#ffffff">
-				<tr>
-					<td align="left" valign="top" width="112"><img alt="WonderHop" border="0" height="153" src="' . $img_url . 'wonderhop_02.png" style="display:block" width="112" /></td>
-					<td align="center" valign="top" width="323"><a href="http://www.wonderhop.com" title="WonderHop" target="_blank"><img alt="WonderHop" border="0" height="78" src="' . $img_url . 'wonderhop_logo.png" style="display:block" width="321" /></a><br />
-					<font color="#fd706b" size="+1" face="georgia">CONGRATS! <i>' . $email . '</i> just invited you to join WonderHop.</font></td>
-					<td align="left" valign="top" width="100"> </td>
-				</tr>
-			</table>			
-		</td>
-  	</tr>
-	
-	<tr>
-		<td align="left" valign="middle" height="40"><img alt="WonderHop line" border="0" height="4" src="' . $img_url . 'wonderhop_03.png" style="display:block" width="535" /></td>
-	</tr>
-	
-	<tr>
-  		<td align="center">
-			<table cellpadding="0" cellspacing="0" border="0" align="center" width="535" bgcolor="#ffffff">
-				<tr>
-					<td align="left" valign="top" width="70"></td>
-					
-					<td align="center" valign="top" width="395">
-						<table cellpadding="0" cellspacing="0" border="0" align="center" width="395">
-							<tr>
-								<td width="15" bgcolor="#fff9df"></td>
-								<td align="center" valign="top" width="365" bgcolor="#fff9df"><br /><font color="#7f767e" size="+0" face="georgia"><i>You can now access WonderHop\'s invite-only daily magazine of gorgeous and unique finds for home, style, and family <font color="#ff7267">all at up to 60% off!</font>
-								<br /><br />
-								WonderHop membership is free, but spots are limited. click below to accept your invitation - but hurry, spots are going fast!</i></font><br /><br /></td>
-								<td width="15" bgcolor="#fff9df"></td>
-							</tr>
-							
-							<tr>
-								<td width="15"></td>
-								<td align="center" valign="top" width="365"><br />
-								<a href="'. $token_url .'" title="Accept your invitation" target="_blank"><img alt="Accept your invitation" border="0" height="40" src="' . $img_url . 'accept.png" style="display:block" width="240" /></a>
-								<br />
-								<a href="https://www.facebook.com/wonderhop" title="WonderHop on Facebook" target="_blank"><img alt="WonderHop on Facebook" border="0" height="29" src="' . $img_url . 'facebook.png" width="31" /></a> &nbsp; <a href="https://twitter.com/wonderhop" title="WonderHop on Twitter" target="_blank"><img alt="WonderHop on Twitter" border="0" height="29" src="' . $img_url . 'twitter.png" width="32" /></a>
-								<br />
-								<a href="https://www.facebook.com/wonderhop" title="WonderHop on Facebook" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">FACEBOOK</font></a> &nbsp;&nbsp;  <a href="https://twitter.com/wonderhop" title="WonderHop on Twitter" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">TWITTER</font></a> &nbsp;&nbsp;&nbsp;
-								<br /><br /></td>
-								<td width="15"></td>
-							</tr>
-							
-						</table>
-					</td>
-					<td align="right" valign="bottom" width="70"><img alt="WonderHop" border="0" height="186" src="' . $img_url . 'wonderhop_04.png" style="display:block" width="44" /></td>
-				</tr>
-			</table>			
-		</td>
-  	</tr>
-	
-	
-	<tr>
-		<td align="left" valign="top" height="25"><img alt="WonderHop" border="0" height="25" src="' . $img_url . 'wonderhop_05.png" style="display:block" width="535" /></td>
-	</tr>
-	
+    <tr>
+        <td align="left" valign="top" height="16"><img alt="WonderHop" border="0" height="16" src="' . $img_url . 'wonderhop_01.png" style="display:block" width="535" /></td>
+    </tr>
+    
+    <tr>
+        <td align="center">
+            <table cellpadding="0" cellspacing="0" border="0" align="center" width="535" bgcolor="#ffffff">
+                <tr>
+                    <td align="left" valign="top" width="112"><img alt="WonderHop" border="0" height="153" src="' . $img_url . 'wonderhop_02.png" style="display:block" width="112" /></td>
+                    <td align="center" valign="top" width="323"><a href="http://www.wonderhop.com" title="WonderHop" target="_blank"><img alt="WonderHop" border="0" height="78" src="' . $img_url . 'wonderhop_logo.png" style="display:block" width="321" /></a><br />
+                    <font color="#fd706b" size="+1" face="georgia">CONGRATS! <i>' . $inviter_email . '</i> just invited you to join WonderHop.</font></td>
+                    <td align="left" valign="top" width="100"> </td>
+                </tr>
+            </table>            
+        </td>
+    </tr>
+    
+    <tr>
+        <td align="left" valign="middle" height="40"><img alt="WonderHop line" border="0" height="4" src="' . $img_url . 'wonderhop_03.png" style="display:block" width="535" /></td>
+    </tr>
+    
+    <tr>
+        <td align="center">
+            <table cellpadding="0" cellspacing="0" border="0" align="center" width="535" bgcolor="#ffffff">
+                <tr>
+                    <td align="left" valign="top" width="70"></td>
+                    
+                    <td align="center" valign="top" width="395">
+                        <table cellpadding="0" cellspacing="0" border="0" align="center" width="395">
+                            <tr>
+                                <td width="15" bgcolor="#fff9df"></td>
+                                <td align="center" valign="top" width="365" bgcolor="#fff9df"><br /><font color="#7f767e" size="+0" face="georgia"><i>You can now access WonderHop\'s invite-only daily magazine of gorgeous and unique finds for home, style, and family <font color="#ff7267">all at up to 60% off!</font>
+                                <br /><br />
+                                WonderHop membership is free, but spots are limited. click below to accept your invitation - but hurry, spots are going fast!</i></font><br /><br /></td>
+                                <td width="15" bgcolor="#fff9df"></td>
+                            </tr>
+                            
+                            <tr>
+                                <td width="15"></td>
+                                <td align="center" valign="top" width="365"><br />
+                                <a href="'. $token_url .'" title="Accept your invitation" target="_blank"><img alt="Accept your invitation" border="0" height="40" src="' . $img_url . 'accept.png" style="display:block" width="240" /></a>
+                                <br />
+                                <a href="https://www.facebook.com/wonderhop" title="WonderHop on Facebook" target="_blank"><img alt="WonderHop on Facebook" border="0" height="29" src="' . $img_url . 'facebook.png" width="31" /></a> &nbsp; <a href="https://twitter.com/wonderhop" title="WonderHop on Twitter" target="_blank"><img alt="WonderHop on Twitter" border="0" height="29" src="' . $img_url . 'twitter.png" width="32" /></a>
+                                <br />
+                                <a href="https://www.facebook.com/wonderhop" title="WonderHop on Facebook" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">FACEBOOK</font></a> &nbsp;&nbsp;  <a href="https://twitter.com/wonderhop" title="WonderHop on Twitter" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">TWITTER</font></a> &nbsp;&nbsp;&nbsp;
+                                <br /><br /></td>
+                                <td width="15"></td>
+                            </tr>
+                            
+                        </table>
+                    </td>
+                    <td align="right" valign="bottom" width="70"><img alt="WonderHop" border="0" height="186" src="' . $img_url . 'wonderhop_04.png" style="display:block" width="44" /></td>
+                </tr>
+            </table>            
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td align="left" valign="top" height="25"><img alt="WonderHop" border="0" height="25" src="' . $img_url . 'wonderhop_05.png" style="display:block" width="535" /></td>
+    </tr>
+    
 </table>
 </td>
  </tr>
@@ -373,28 +385,28 @@ function gen_confirm_token($email)
 
 function _generateReferralCode($len = 6)
 {
-	$hex = md5("referral" . uniqid("", true));
-	$pack = pack('H*', $hex);
-	$tmp =  base64_encode($pack);
-	$uid = preg_replace("#(*UTF8)[^A-Za-z0-9]#", "", $tmp);
-	$len = max(4, min(128, $len));
-	while (strlen($uid) < $len)
-		$uid .= gen_uuid(22);
-	return substr($uid, 0, $len);
+    $hex = md5("referral" . uniqid("", true));
+    $pack = pack('H*', $hex);
+    $tmp =  base64_encode($pack);
+    $uid = preg_replace("#(*UTF8)[^A-Za-z0-9]#", "", $tmp);
+    $len = max(4, min(128, $len));
+    while (strlen($uid) < $len)
+        $uid .= gen_uuid(22);
+    return substr($uid, 0, $len);
 }
 
 function genRefCode($len = 6)
 {
-	$code = _generateReferralCode($len);
-	while(refCodeExists( $code )) {
-		$code = _generateReferralCode($len);
-	}
-	return $code;
+    $code = _generateReferralCode($len);
+    while(refCodeExists( $code )) {
+        $code = _generateReferralCode($len);
+    }
+    return $code;
 }
 
 function refCodeExists($code)
 {
-	return db()->query("select id from subscribers where personal_token = '{$code}';")->fetchAll() ? true : false;
+    return db()->query("select id from subscribers where personal_token = '{$code}';")->fetchAll() ? true : false;
 }
 
 

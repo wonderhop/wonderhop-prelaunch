@@ -111,7 +111,7 @@ body, html { margin:0; padding:0; background-color:/*#fd8c80*/ white; }
 .card.card-5 { background-position: left 30px; }
 .card.card-7 { background-position: left 17px; }
 .card.card-8 { background-position: left 17px; }
-.card.card-9 { background-position: left 18px; }
+.card.card-9 { background-position: left 58px; }
 
 .ctext { width: 1140px; height: 920px; position:relative; /*border:1px solid blue;*/ }
 
@@ -162,7 +162,7 @@ body, html { margin:0; padding:0; background-color:/*#fd8c80*/ white; }
 .prod_img-8 { left: 545px; top: 290px; }
 .prod-img-8 { height: 345px; width: 370px; }
 
-.prod_img-9 {  height: 355px; left: 535px; top: 255px; }
+.prod_img-9 {  height: 355px; left: 535px; top: 295px; }
 .prod-img-9 {  height: 355px; width: 370px; }
 
 
@@ -250,17 +250,21 @@ label[for=terms] { width: auto; }
 .block_popup .popup_content .form-list li .validation-advice { position:absolute; bottom:-14px;  }
 /*#become_member { cursor:pointer;font-weight:bold; }*/
   
-#gifts .money{
-  background: url("/static/images/gifts.png") 0px 24px no-repeat;
-    height: 250px;
-    right: 240px;
-    position: absolute;
-    top: 312px;
-    width: 187px;
-}
-#gifts .money span {
-    border-bottom: 1px dotted #c7c7c7;
-    color: #ff6f67;
-    font-size: 17px;
-    font-style: italic;
-}
+#gifts { position: absolute; right: 237px; top: 310px; width: 200px; height: 330px; }
+#gifts .money { color: #ff6f67; font-size: 17px; font-style: italic; position: absolute; left:0; top:0; height:50px;
+    font-family: "letter-gothic-std",monospace; font-weight: bold; padding-top:7px; width:100%;
+    background: url("/static/images/invite_dotline.png") no-repeat scroll -6px top; }
+#gifts .money.initial { background: url("/static/images/invite_dotline_initial.png") no-repeat scroll -6px top;  }
+#gifts .indicator{ background: url("/static/images/gift_ind_back.png") no-repeat ; height: 260px; position: absolute;
+    left:0; top: 40px; width: 200px; display: block; margin:0; padding:16px 0 0; list-style:none; }
+#gifts .indicator .i-level { height:48px; margin-top: -8px; margin-left: 80px; position:relative;  }
+#gifts .indicator .i-level .ammount { display: none; background: white; color: #ff6f67; font-size: 30px; font-style: italic;
+    position: absolute; left: 60px; top: 5px; width: 50px; font-family: "letter-gothic-std",monospace; }
+#gifts .indicator .i-level.active { background: url("/static/images/wallet.png") left bottom no-repeat; } 
+#gifts .indicator .i-level.current .ammount { display:block; }
+
+
+#gifts .indicator .i-level .remainder { display: none; font-family: Georgia,serif; font-size: 13px; font-weight: bold;
+    color: #FF6F67; line-height: 1; text-align: center; position: absolute; left: 0; top: 16px; width: 50px; }
+    
+#gifts .indicator .i-level.remaining .remainder { display: block; }

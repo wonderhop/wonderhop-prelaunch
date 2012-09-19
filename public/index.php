@@ -108,7 +108,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
 <div id="email_screen" <?php if (isset($_COOKIE['prewh_email'])): ?> style="display:none" <?php endif; ?>>
     <?php if (!isset($_COOKIE['prewh_email'])): ?> 
         <script type="text/javascript">
-           jQuery.backstretch('/static/images/overlay.jpg');
+           jQuery.backstretch('/static/images/overlay1.jpg');
         </script>
      <?php endif; ?>
     <!--<div class="email_box">-->
@@ -123,10 +123,10 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                     <script type="text/javascript">
                         function changePopupContentLogin(){
                             var $ = jQuery,
-                                title = 'Good to <br/>have you back<br/>',
-                                text_1 = 'Login with your email address below to',
-                                text_2 = 'see your gift cards.',
-                                btn_text = 'Login';
+                                title = 'Welcome back! <br/><br/>',
+                                text_1 = 'Log in to invite friends to Wonderhop and',
+                                text_2 = 'earn cash to spend on our site when we launch.',
+                                btn_text = 'LOGIN NOW';
                             $('.block_inner_content').fadeOut(200,function(ev){
                                 $('.popup_title').html(title);
                                 $('.popup_content p.pc_l1').html(text_1);
@@ -245,6 +245,15 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                                 //$html.css(htmlcss);
                                                 
                                                 $('#personal-link').val(resp.personal_link);
+                                                $.post('/friendcount.php','count=1',function(data){
+                                                    try{
+                                                        resp = JSON.parse(data);
+                                                    }catch(e){
+                                                    }
+                                                    if (resp && parseInt(resp.invited)) {
+                                                        friends_invited(resp.invited);
+                                                    }
+                                                });
                                             },
                                             queue:false,
                                         });
@@ -358,6 +367,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                     });
                     $('#invitations-form').submit(function(ev,data){
                         $form = $(this);
+                        if ( ! $('#cloud_invite_input').val()) return false;
                         $.post('/invite.php',$form.serialize(),function(data){
                             // alert('friend invited');
                             resp = null;
@@ -370,7 +380,8 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                     window.location.href = resp.redirect;
                                     return false;
                                 }
-                                
+                                $('#invitations-sent').fadeIn('fast').delay(1000).fadeOut('slow');
+                                $('#cloud_invite_input').val('');
                             }
                         });
                         ev.preventDefault();
@@ -421,12 +432,79 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                         <input type="hidden" id="key" value="" />
                         <input id="cloud_invite_input" class="invite-emails input-text required-entry" size="150" rel="1" type="text" name="emails" value="" />
                         <button id="cloud_invite_submit" type="submit" title="Send Invite" class="button"><span><span>Send</span></span></button>
+                        <div id="invitations-sent" style="font-size:14px;color:green;font-style:italic;position:absolute;left:4px;bottom:4px;display:none;">INVITATIONS SENT !</div>
                     </form>
-                    <div id="gifts" style="display:none;">
-                        <div class="money">
-                            <span>YOU'VE EARNED $60!</span>
+                    
+                    <div id="gifts" style="">
+                        <div class="money initial">
+                            <span>GET STARTED!</span>
                         </div>
+                        <ul class="indicator">
+                            <li class="i-level i-level-6"><span class="ammount">$60</span><span class="remainder"></span></li>
+                            <li class="i-level i-level-5"><span class="ammount">$50</span><span class="remainder"></span></li>
+                            <li class="i-level i-level-4"><span class="ammount">$40</span><span class="remainder"></span></li>
+                            <li class="i-level i-level-3"><span class="ammount">$30</span><span class="remainder"></span></li>
+                            <li class="i-level i-level-2"><span class="ammount">$20</span><span class="remainder"></span></li>
+                            <li class="i-level i-level-1"><span class="ammount">$10</span><span class="remainder"></span></li>
+                        </ul>
                     </div>
+                    <script type="text/javascript">(function($) {
+                        
+                        function friends_invited(fcount)
+                        {
+                            var fc = (fcount > 30) ? 30 : fcount, 
+                                rem = (fc%5) ? (5 - (fc%5)) : 0,
+                                level = parseInt((fc - (rem ? 5 - rem : 0)) /5);
+                            //if (fcount < 5) {
+                            //    fc = fcount; level = 0; rem = 5-fcount;
+                            //}
+                            console.log(fc, rem, level);
+                            activate_winning(level, rem);
+                        }
+                        
+                        function activate_winning(level, remainder)
+                        {
+                            var $cc = $('.i-level-'+level);
+                            if ( ! $cc.length && level != 0) return;
+                            show_level(level);
+                            $('.indicator li').removeClass('current').removeClass('remaining');
+                            $('.money.initial').removeClass('initial');
+                            if (remainder && remainder != 0) {
+                                var $nc = $('.i-level-'+(level+1));
+                                if ( ! $nc.length) return;
+                                $('.indicator li').removeClass('remains');
+                                $('.remainder',$nc).html(''+remainder+'<br/><span style="color:black">more</span>');
+                                $nc.addClass('remaining');
+                                $('.money span').html('+' + remainder + ' INVITES TO ' + $('.ammount',$nc).text() + '!');
+                            } else {
+                                $cc.addClass('current');
+                                $('.money span').html('YOU\'VE EARNED ' + $('.ammount',$cc).text() + '!');
+                            }
+                        }
+                        
+                        function show_level(level)
+                        {
+                            $('.indicator li').removeClass('active').removeClass('current');
+                            for(var i=1; i<=level; i++) {
+                                var $c = $('.i-level-'+i);
+                                if ($c.length) {
+                                    $c.addClass('active');
+                                    if (i == level) $c.addClass('current')
+                                }
+                            }
+                        }
+                        
+                        window.activate_winning = activate_winning;
+                        window.friends_invited = friends_invited;
+                        window.show_level = show_level;
+                        
+                        <?php if (isset($_COOKIE['prewh_email']) and $fcount = invited_friendcount($_COOKIE['prewh_email'])) { ?>
+                            $(function(){ friends_invited( <?php echo $fcount; ?> ); });
+                        <?php } ?>
+                        
+                    })(jQuery);</script>
+                    
+                    
                     <input type="text" id="personal-link" value="" onfocus="setTimeout(function(){jQuery('#personal-link').select();}, 100);"/>
                     
                     <div id="sharebox">
@@ -452,14 +530,15 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                     left   = (jQuery(window).width()  - width)  / 2,
                                     top    = (jQuery(window).height() - height) / 2,
                                     url    = 'http://twitter.com/share/?url=' + Subscriber.personal_link,
+                                    eurl   = url+'&text=Join the thousands who use Wonderhop to discover uniquely lovely jewelry, home décor and gifts, all at great prices.',
                                     opts   = 'status=1' +
                                             ',width='  + width  +
                                             ',height=' + height +
                                             ',top='    + top    +
                                             ',left='   + left;
                                     jQuery('.twitter-share.shareitem a').attr('href',Subscriber.personal_link);
-                                    window.open(url, 'Twitter', opts);
-                                    return falsse;
+                                    window.open(eurl, 'Twitter', opts);
+                                    return false;
                                 }
                             </script>
                         </div>
