@@ -473,7 +473,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                 var $nc = $('.i-level-'+(level+1));
                                 if ( ! $nc.length) return;
                                 $('.indicator li').removeClass('remains');
-                                $('.remainder',$nc).html(''+remainder+'<br/><span style="color:black">more</span>');
+                                $('.remainder',$nc).html(''+remainder+'<br/><span style="color:gray;font-weight:normal;">more</span>');
                                 $nc.addClass('remaining');
                                 $('.money span').html('+' + remainder + ' INVITES TO ' + $('.ammount',$nc).text() + '!');
                             } else {
