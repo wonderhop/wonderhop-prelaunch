@@ -11,10 +11,10 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
 ?><!DOCTYPE html>
 <html>
 <head>
-    <title>Wondrohp opens soon !</title>
+    <title>Curio Road</title>
     <meta http-equiv="Content-Type" name="content-type" content="text/html; charset=UTF-8" />
-    <meta name="title" content="Wonderhop | Unique finds for an inspired life" />
-    <meta name="description" content="Join the thousands who use Wonderhop to discover uniquely lovely jewelry, home décor and gifts, all at great prices. Get inspired today!" />
+    <meta name="title" content="Curio Road | Unique finds for an inspired life" />
+    <meta name="description" content="Join the thousands who use Curio Road to discover uniquely lovely jewelry, home décor and gifts, all at great prices. Get inspired today!" />
     
     <link rel="image_src" type="image/jpeg" href="/static/images/fb_thumb.jpeg" />
     <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Cantata+One">
