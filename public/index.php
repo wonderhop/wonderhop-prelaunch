@@ -349,7 +349,9 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
             <script type="text/javascript" src="https://api.cloudsponge.com/address_books.js"></script>
             <script type="text/javascript" charset="utf-8">
                 var csPageOptions = {
-                    domain_key:"SRVTZN6BK75JASSYL85M", 
+                    domain_key:"<?php
+                                    $key_file = dirname(__FILE__) . '/../cs_domain.key';
+                                    echo file_exists($key_file) ? trim(file_get_contents($key_file)) : ''; ?>",
                     textarea_id:"cloud_invite_input"
                 };
                 
