@@ -44,7 +44,7 @@ var Prelaunch = (function(){ function Prelaunch($) { this._ = 'prelaunch'; var s
                     else {
                         $this.data('iv_lock', true);
                         if (is_in && ! $this.is(':visible') || parseInt($this.height()) == 0) {
-                            $this.delay(600).animate({height:$this.data('orig_height')},{
+                            $this.delay(100).animate({height:$this.data('orig_height')},{
                                 easing:'swing',
                                 duration: 600,
                                 complete: function(){
