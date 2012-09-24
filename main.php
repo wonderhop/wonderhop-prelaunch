@@ -112,30 +112,30 @@ function invited_friendcount($email)
 
 function send_confirm_email($email, $token, $inviter_email, $inviter_token) {
     $body = get_confirmation_email($email, BASEURL . "?c=$token&r=$inviter_token", $inviter_email);
-    send_sendgrid_email($email, $body, $body, 'Please confirm your Wonderhop account');
+    send_sendgrid_email($email, $body, $body, 'Please confirm your Curio Road account');
 }
 
 function send_invitation_email($email, $confirmation_token, $inviter_email, $inviter_token)
 {    
     $confirmation_link = personal_link($inviter_email, 1) . '&c=' . $confirmation_token;
     $body = get_email($email, $confirmation_link, $inviter_email);
-    $text = "CONGRATS! $inviter_email just invited you to join WonderHop. \n
-            You can now access WonderHop's invite-only daily magazine of gorgeous and unique finds for home, style, and family all at up to 60% off! 
+    $text = "CONGRATS! $inviter_email just invited you to join Curio Road. \n
+            You can now access Curio Road's invite-only daily magazine of gorgeous and unique finds for home, style, and family all at up to 60% off! 
             \n
-            WonderHop membership is free, but spots are limited. click below to accept your invitation - but hurry, spots are going fast! \n
+            Curio Road membership is free, but spots are limited. click below to accept your invitation - but hurry, spots are going fast! \n
             Click here: <a href=\"$confirmation_link\">ACCEPT YOUR INVITATION</a> or copy this $confirmation_link into your browser.
     ";
     //error_log($text);
     //error_log($email);
     //error_log($body);
-    send_sendgrid_email($email, $text, $body, "$inviter_email invited you to wonderhop.com");
+    send_sendgrid_email($email, $text, $body, "[$inviter_email] invited you to join Curio Road");
 }
 
 function send_sendgrid_email($email, $text, $html, $subject) {
     
     $crlf = "\n";
     $hdrs = array(
-                  'From'    => 'contact@wonderhop.com',
+                  'From'    => 'Curio Road <hello@curioroad.com>',
                   'Subject' => $subject,
                   'To'      => $email,
                   );
@@ -164,7 +164,7 @@ function get_confirmation_email($email, $token_url, $inviter_email) {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-<title>You are invited to join WonderHop</title> 
+<title>You are invited to join Curio Road</title> 
 
 <style type="text/css">
 .ReadMsgBody {
@@ -193,8 +193,8 @@ width: 100%;}    </style>
             <table cellpadding="0" cellspacing="0" border="0" align="center" width="535" bgcolor="#ffffff">
                 <tr>
                     <td align="left" valign="top" width="112"><img alt="" border="0" height="153" src="' . $img_url . 'wonderhop_02.png" style="display:block" width="112" /></td>
-                    <td align="center" valign="top" width="323"><a href="http://www.wonderhop.com" title="WonderHop" target="_blank"><img alt="" border="0" height="78" src="' . $img_url . 'wonderhop_logo.png" style="display:block" width="321" /></a><br />
-                    <font color="#fd706b" size="+1" face="georgia">Thanks for signing up for Wonderhop ! You\'re in for a wonderful new shopping experience.</font></td>
+                    <td align="center" valign="top" width="323"><a href="http://www.curioroad.com" title="Curio Road" target="_blank"><img alt="" border="0" height="78" src="' . $img_url . 'wonderhop_logo.png" style="display:block" width="321" /></a><br />
+                    <font color="#fd706b" size="+1" face="georgia">Thanks for signing up for Curio Road ! You\'re in for a wonderful new shopping experience.</font></td>
                     <td align="left" valign="top" width="100"> </td>
                 </tr>
             </table>            
@@ -224,9 +224,9 @@ width: 100%;}    </style>
                                 <td align="center" valign="top" width="365"><br />
                                 <a href="'. $token_url .'" title="CONFIRM" target="_blank"><img alt="CONFIRM" border="0" height="40" src="' . $img_url . 'confirm_button.png" style="display:block" width="240" /></a>
                                 <br />
-                                <a href="https://www.facebook.com/wonderhop" title="WonderHop on Facebook" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'facebook.png" width="31" /></a> &nbsp; <a href="https://twitter.com/wonderhop" title="WonderHop on Twitter" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'twitter.png" width="32" /></a>
+                                <a href="https://www.facebook.com/wonderhop" title="Curio Road on Facebook" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'facebook.png" width="31" /></a> &nbsp; <a href="https://twitter.com/wonderhop" title="Curio Road on Twitter" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'twitter.png" width="32" /></a>
                                 <br />
-                                <a href="https://www.facebook.com/wonderhop" title="WonderHop on Facebook" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">FACEBOOK</font></a> &nbsp;&nbsp;  <a href="https://twitter.com/wonderhop" title="WonderHop on Twitter" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">TWITTER</font></a> &nbsp;&nbsp;&nbsp;
+                                <a href="https://www.facebook.com/wonderhop" title="Curio Road on Facebook" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">FACEBOOK</font></a> &nbsp;&nbsp;  <a href="https://twitter.com/wonderhop" title="Curio Road on Twitter" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">TWITTER</font></a> &nbsp;&nbsp;&nbsp;
                                 <br /><br /></td>
                                 <td width="15"></td>
                             </tr>
@@ -266,7 +266,7 @@ function get_email($email, $token_url, $inviter_email) {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-<title>You are invited to join WonderHop</title> 
+<title>You are invited to join Curio Road</title> 
 
 <style type="text/css">
 .ReadMsgBody {
@@ -295,8 +295,8 @@ width: 100%;}    </style>
             <table cellpadding="0" cellspacing="0" border="0" align="center" width="535" bgcolor="#ffffff">
                 <tr>
                     <td align="left" valign="top" width="112"><img alt="" border="0" height="153" src="' . $img_url . 'wonderhop_02.png" style="display:block" width="112" /></td>
-                    <td align="center" valign="top" width="323"><a href="http://www.wonderhop.com" title="WonderHop" target="_blank"><img alt="" border="0" height="78" src="' . $img_url . 'wonderhop_logo.png" style="display:block" width="321" /></a><br />
-                    <font color="#fd706b" size="+1" face="georgia">CONGRATS! <i>' . $inviter_email . '</i> just invited you to join WonderHop.</font></td>
+                    <td align="center" valign="top" width="323"><a href="http://www.curioroad.com" title="Curio Road" target="_blank"><img alt="" border="0" height="78" src="' . $img_url . 'wonderhop_logo.png" style="display:block" width="321" /></a><br />
+                    <font color="#fd706b" size="+1" face="georgia">CONGRATS! <i>' . $inviter_email . '</i> just invited you to join Curio Road.</font></td>
                     <td align="left" valign="top" width="100"> </td>
                 </tr>
             </table>            
@@ -317,9 +317,9 @@ width: 100%;}    </style>
                         <table cellpadding="0" cellspacing="0" border="0" align="center" width="395">
                             <tr>
                                 <td width="15" bgcolor="#fff9df"></td>
-                                <td align="center" valign="top" width="365" bgcolor="#fff9df"><br /><font color="#7f767e" size="+0" face="georgia"><i>You can now access WonderHop\'s invite-only daily magazine of gorgeous and unique finds for home, style, and family <font color="#ff7267">all at up to 60% off!</font>
+                                <td align="center" valign="top" width="365" bgcolor="#fff9df"><br /><font color="#7f767e" size="+0" face="georgia"><i>You can now access Curio Road\'s invite-only daily magazine of gorgeous and unique finds for home, style, and family <font color="#ff7267">all at up to 60% off!</font>
                                 <br /><br />
-                                WonderHop membership is free, but spots are limited. click below to accept your invitation - but hurry, spots are going fast!</i></font><br /><br /></td>
+                                Curio Road membership is free, but spots are limited. click below to accept your invitation - but hurry, spots are going fast!</i></font><br /><br /></td>
                                 <td width="15" bgcolor="#fff9df"></td>
                             </tr>
                             
@@ -328,9 +328,9 @@ width: 100%;}    </style>
                                 <td align="center" valign="top" width="365"><br />
                                 <a href="'. $token_url .'" title="Accept your invitation" target="_blank"><img alt="Accept your invitation" border="0" height="40" src="' . $img_url . 'accept.png" style="display:block" width="240" /></a>
                                 <br />
-                                <a href="https://www.facebook.com/wonderhop" title="WonderHop on Facebook" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'facebook.png" width="31" /></a> &nbsp; <a href="https://twitter.com/wonderhop" title="WonderHop on Twitter" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'twitter.png" width="32" /></a>
+                                <a href="https://www.facebook.com/wonderhop" title="Curio ROad on Facebook" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'facebook.png" width="31" /></a> &nbsp; <a href="https://twitter.com/wonderhop" title="Curio Road on Twitter" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'twitter.png" width="32" /></a>
                                 <br />
-                                <a href="https://www.facebook.com/wonderhop" title="WonderHop on Facebook" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">FACEBOOK</font></a> &nbsp;&nbsp;  <a href="https://twitter.com/wonderhop" title="WonderHop on Twitter" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">TWITTER</font></a> &nbsp;&nbsp;&nbsp;
+                                <a href="https://www.facebook.com/wonderhop" title="Curio ROad on Facebook" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">FACEBOOK</font></a> &nbsp;&nbsp;  <a href="https://twitter.com/wonderhop" title="Curio Road on Twitter" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">TWITTER</font></a> &nbsp;&nbsp;&nbsp;
                                 <br /><br /></td>
                                 <td width="15"></td>
                             </tr>
