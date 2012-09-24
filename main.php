@@ -81,7 +81,7 @@ function newemail_save($email, $invited_by = NULL, $no_confirm = false)
         $fields .= ',invited_by';
         $vph .= ',?';
         $values[] = $inviter['id'];
-        if( ! $no_confirm) send_confirm_email($email, $values[2], $inviter['email'], $inviter['personal_token']); 
+        //if( ! $no_confirm) send_confirm_email($email, $values[2], $inviter['email'], $inviter['personal_token']); 
     }
     $fields .=  ')';
     $vph .=  ')';

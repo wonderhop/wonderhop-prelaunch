@@ -47,11 +47,11 @@ body, html { margin:0; padding:0; background-color:/*#fd8c80*/ white; }
 
 #wrap { width:100%; position: relative; }
 
-#content-box { width: 1140px; height: 10100px; margin:0 auto; position:relative; overflow:hidden; }
+#content-box { width: 1140px; height: 10170px; margin:0 auto; position:relative; overflow:hidden; }
 #content-cards { position:absolute; top:0; left:0; right:0; bottom:0; /*background: url("/static/images/slides_cards-nq8.png") no-repeat scroll left top transparent;*/  }
 #content-text { position:absolute; top:0; left:0; right:0; bottom:0; /*background: url("/static/images/slides_text_wire_corners-nq8.png") no-repeat scroll left top transparent; */ }
 
-#content-back { position:absolute; top:0; left:0; right:0; bottom:0; height: 7210px; /*background: url("/static/images/para_bg.jpg") repeat fixed left top transparent;*/}
+#content-back { position:absolute; top:0; left:0; right:0; bottom:0; height: 10170px; /*background: url("/static/images/para_bg.jpg") repeat fixed left top transparent;*/}
 
 /* 920 / 900 -->  736/716 (0.8) | 598/578 (0.65) */
 /*.backslide { width:100%; height:736px; position:relative; /*display:none;*//* }*/
@@ -133,8 +133,8 @@ body, html { margin:0; padding:0; background-color:/*#fd8c80*/ white; }
 .backslide.backslide-11 .back { height: 920px; }*/
 .backslide.backslide-8 { height:970px; }
 .backslide.backslide-8 .back { height: 950px; }
-.backslide.backslide-11 { height:850px; }
-.backslide.backslide-11 .back { height: 830px; }
+.backslide.backslide-11 { height:920px; }
+.backslide.backslide-11 .back { height: 900px; }
 
 
 .card { width: 1140px; height: 920px; /*border:1px solid red;*/  }
@@ -201,22 +201,22 @@ body, html { margin:0; padding:0; background-color:/*#fd8c80*/ white; }
 .prod-img-9 {  height: 355px; width: 370px; }
 
 
-#invitations-form { height: 160px;left: 240px;position: absolute;top: 300px;width: 385px; }
+#invitations-form { height: 135px;left: 304px;position: absolute;top: 479px;width: 545px; }
 #invite-links-container { margin-top: 49px; }
 .csicon { float:left; clear:none; width:80px; padding: 0 10px; overflow:hidden; text-indent: -9988px; display:block; height:30px;  }
 .csicon:first-child { padding-left:0;  }
 .csicon.cloudsponge_msn { width:100px; }
 .csicon.invite-import-aol { width: 55px; }
-#cloud_invite_input { background: none repeat scroll 0 0 transparent; box-shadow: none; font-size: 17px; height: 26px;
-        left: 3px; outline: medium none; padding: 10px 10px 7px 10px; position: absolute; top: 90px; width: 368px;
+#cloud_invite_input { background: none repeat scroll 0 0 transparent; box-shadow: none; font-size: 17px; height: 24px;
+        left: 3px; outline: medium none; padding: 13px 10px 7px 10px; position: absolute; top: 90px; width: 396px;
         border:none; font-family:"letter-gothic-std",monospace; color: #7F767E;  }
-#cloud_invite_submit {  background: none repeat scroll 0 0 transparent; border: medium none; bottom: 0; box-shadow: none;
-        height: 26px; margin: 0; outline: medium none; overflow: hidden; padding: 0; position: absolute; right: 0;
-        text-indent: -9988px; width: 84px; cursor:pointer; }
+#cloud_invite_submit {  background: none repeat scroll 0 0 transparent; border: medium none; bottom: 9px; box-shadow: none;
+        height: 30px; margin: 0; outline: medium none; overflow: hidden; padding: 0; position: absolute; right: 0;
+        text-indent: -9988px; width: 101px; cursor:pointer; }
 #personal-link { background: none repeat scroll 0 0 transparent; border: none; box-shadow: none; font-size: 17px;
-        height: 26px; left: 243px; outline: medium none; padding: 12px 10px 7px 10px; position: absolute; top: 515px;
-        width: 368px; font-family:"letter-gothic-std",monospace; color: #7F767E; }
-#sharebox { left: 327px; min-width: 42px; min-height: 42px; overflow: hidden; position: absolute; top: 570px; }
+        height: 26px; left: 304px; outline: medium none; padding: 12px 10px 7px 10px; position: absolute; top: 427px;
+        width: 396px; font-family:"letter-gothic-std",monospace; color: #7F767E; }
+#sharebox { left: 748px; min-width: 42px; min-height: 42px; overflow: hidden; position: absolute; top: 428px; }
 .shareitem { width:42px; height:42px; display:block;float:left; margin-right:15px; cursor:pointer; }
 #backstretch { z-index:100 !important; }
 #wrap { display:none; }

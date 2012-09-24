@@ -432,10 +432,10 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                         <input type="hidden" id="key" value="" />
                         <input id="cloud_invite_input" class="invite-emails input-text required-entry" size="150" rel="1" type="text" name="emails" value="" />
                         <button id="cloud_invite_submit" type="submit" title="Send Invite" class="button"><span><span>Send</span></span></button>
-                        <div id="invitations-sent" style="font-size:14px;color:green;font-style:italic;position:absolute;left:4px;bottom:4px;display:none;">INVITATIONS SENT !</div>
+                        <div id="invitations-sent" style="font-size:14px;color:green;font-style:italic;position:absolute;right:-60px;bottom:55px;display:none;">INVITATIONS SENT !</div>
                     </form>
                     
-                    <div id="gifts" style="">
+                    <div id="gifts" style="display:none;">
                         <div class="money initial">
                             <span>GET STARTED!</span>
                         </div>
@@ -530,7 +530,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                     left   = (jQuery(window).width()  - width)  / 2,
                                     top    = (jQuery(window).height() - height) / 2,
                                     url    = 'http://twitter.com/share/?url=' + Subscriber.personal_link,
-                                    eurl   = url+'&text=Join the thousands who use Wonderhop to discover uniquely lovely jewelry, home décor and gifts, all at great prices.',
+                                    eurl   = url+'&text=Join the thousands who use Curio Road to discover uniquely lovely jewelry, home décor and gifts, all at great prices.',
                                     opts   = 'status=1' +
                                             ',width='  + width  +
                                             ',height=' + height +
