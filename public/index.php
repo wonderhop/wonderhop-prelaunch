@@ -516,7 +516,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                             function post_on_wall() {
                                 var personal_link = Subscriber.personal_link;
                                 jQuery('.fb-share.shareitem a').attr('share_url',personal_link);
-                                url = 'http://www.facebook.com/sharer.php?u='+personal_link+'&t=Meet Wonderhop !';
+                                url = 'http://www.facebook.com/sharer.php?u='+personal_link+'&t=Curio Road';
                                 window.open(url, "Post on Wall", "width=780, height=410, toolbar=0, scrollbars=0, status=0, resizable=0, location=0, menuBar=0, left=0, top=0");
                             }
                         </script>
