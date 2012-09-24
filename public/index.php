@@ -124,7 +124,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                         function changePopupContentLogin(){
                             var $ = jQuery,
                                 title = 'Welcome back! <br/><br/>',
-                                text_1 = 'Log in to invite friends to Wonderhop and',
+                                text_1 = 'Log in to invite friends to Curio Road and',
                                 text_2 = 'earn cash to spend on our site when we launch.',
                                 btn_text = 'LOGIN NOW';
                             $('.block_inner_content').fadeOut(200,function(ev){
