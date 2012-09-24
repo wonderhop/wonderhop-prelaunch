@@ -510,7 +510,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                     <div id="sharebox">
 
                         <div class="fb-share shareitem" onclick="post_on_wall();">
-                            <a name="fb_share" type="icon_link" share_url=""></a>
+                            <a href="#" name="fb_share" type="icon_link" share_url=""></a>
                         </div>
                         <script type="text/javascript">
                             function post_on_wall() {
@@ -522,7 +522,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                         </script>
 
                         <div class="twitter-share shareitem" onclick="tweet_it();">
-                            <a href= title="Share this on Twitter" id="service-links-twitter" class="service-links-twitter" rel="nofollow" target="_blank"></a>
+                            <a href="#" title="Share this on Twitter" id="service-links-twitter" class="service-links-twitter" rel="nofollow" target="_blank"></a>
                             <script type="text/javascript">
                                 function tweet_it() {
                                     var width  = 575,
