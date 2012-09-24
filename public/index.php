@@ -14,7 +14,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
     <title>Curio Road</title>
     <meta http-equiv="Content-Type" name="content-type" content="text/html; charset=UTF-8" />
     <meta name="title" content="Curio Road | Unique finds for an inspired life" />
-    <meta name="description" content="Join the thousands who use Curio Road to discover uniquely lovely jewelry, home décor and gifts, all at great prices. Get inspired today!" />
+    <meta name="description" content="Discover uniquely lovely jewelry, home decor and gifts, all at insider prices. Get inspired today!" />
     
     <link rel="image_src" type="image/jpeg" href="/static/images/fb_thumb.jpeg" />
     <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Cantata+One">
@@ -24,7 +24,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
     </style>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="static/js/jquery.backstretch.min.js"></script>
-    <!--<script type="text/javascript" src="static/js/stellar.js"></script>--?
+    <!--<script type="text/javascript" src="static/js/stellar.js"></script>-->
     <!--<script type="text/javascript" src="static/js/jquery.scrolling-parallax.js"></script>-->
     <script type="text/javascript" src="static/js/jquery.inview.min.js"></script>
     <script type="text/javascript" src="static/js/jquery.scrollTo.js"></script>
@@ -518,7 +518,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                             function post_on_wall() {
                                 var personal_link = Subscriber.personal_link;
                                 jQuery('.fb-share.shareitem a').attr('share_url',personal_link);
-                                url = 'http://www.facebook.com/sharer.php?u='+personal_link+'&t=Curio Road';
+                                url = 'http://www.facebook.com/sharer.php?u='+personal_link+'&t=Grab a $5 credit to shop Curio Road.';
                                 window.open(url, "Post on Wall", "width=780, height=410, toolbar=0, scrollbars=0, status=0, resizable=0, location=0, menuBar=0, left=0, top=0");
                             }
                         </script>
@@ -532,7 +532,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                     left   = (jQuery(window).width()  - width)  / 2,
                                     top    = (jQuery(window).height() - height) / 2,
                                     url    = 'http://twitter.com/share/?url=' + Subscriber.personal_link,
-                                    eurl   = url+'&text=Join the thousands who use Curio Road to discover uniquely lovely jewelry, home décor and gifts, all at great prices.',
+                                    eurl   = url+'&text=Grab a $5 credit to shop Curio Road. Discover uniquely lovely jewelry, home decor and gifts, all at insider prices',
                                     opts   = 'status=1' +
                                             ',width='  + width  +
                                             ',height=' + height +
