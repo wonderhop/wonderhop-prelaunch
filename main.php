@@ -128,7 +128,7 @@ function send_invitation_email($email, $confirmation_token, $inviter_email, $inv
     //error_log($text);
     //error_log($email);
     //error_log($body);
-    send_sendgrid_email($email, $text, $body, "[$inviter_email] invited you to join Curio Road");
+    send_sendgrid_email($email, $text, $body, "$inviter_email invited you to join Curio Road");
 }
 
 function send_sendgrid_email($email, $text, $html, $subject) {

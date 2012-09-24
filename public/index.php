@@ -299,7 +299,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
     
 </div>
 
-<div id="wrap" <?php if (isset($_COOKIE['prewh_email'])): ?> style="display:block; visibility: hidden;" <?php endif; ?>>
+<div id="wrap" <?php if (isset($_COOKIE['prewh_email']) and ($csub = subscriber($_COOKIE['prewh_email'])) and $csub['slideshowed']): ?> style="display:block; visibility: hidden;" <?php endif; ?>>
     
     <div id="content-back" data-stellar-background-ratio="0.7">
         <div class="backslide backslide-1"><div class="back cblue bcdarkpurple"></div><div class="backwhite"></div></div>
