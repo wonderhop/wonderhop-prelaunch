@@ -24,11 +24,11 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
     </style>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="static/js/jquery.backstretch.min.js"></script>
-    <script type="text/javascript" src="static/js/stellar.js"></script>
-    <script type="text/javascript" src="static/js/jquery.scrolling-parallax.js"></script>
+    <!--<script type="text/javascript" src="static/js/stellar.js"></script>--?
+    <!--<script type="text/javascript" src="static/js/jquery.scrolling-parallax.js"></script>-->
     <script type="text/javascript" src="static/js/jquery.inview.min.js"></script>
     <script type="text/javascript" src="static/js/jquery.scrollTo.js"></script>
-    <script type="text/javascript" src="static/js/jquery.parallax.js"></script>
+    <!--<script type="text/javascript" src="static/js/jquery.parallax.js"></script>-->
     <script type="text/javascript" src="static/js/script.js"></script>
     <script type="text/javascript">
         var Subscriber = null;

@@ -222,7 +222,7 @@ width: 100%;}    </style>
                             <tr>
                                 <td width="15"></td>
                                 <td align="center" valign="top" width="365"><br />
-                                <a href="'. $token_url .'" title="CONFIRM" target="_blank"><img alt="CONFIRM" border="0" height="40" src="' . $img_url . 'accept.png" style="display:block" width="240" /></a>
+                                <a href="'. $token_url .'" title="CONFIRM" target="_blank"><img alt="CONFIRM" border="0" height="40" src="' . $img_url . 'confirm_button.png" style="display:block" width="240" /></a>
                                 <br />
                                 <a href="https://www.facebook.com/wonderhop" title="WonderHop on Facebook" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'facebook.png" width="31" /></a> &nbsp; <a href="https://twitter.com/wonderhop" title="WonderHop on Twitter" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'twitter.png" width="32" /></a>
                                 <br />

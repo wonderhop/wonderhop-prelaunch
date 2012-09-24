@@ -2,7 +2,7 @@ var Prelaunch = (function(){ function Prelaunch($) { this._ = 'prelaunch'; var s
     
     init : function()
     {
-        console.log('init');
+        //console.log('init');
         $(self.docready);
     },
     
@@ -15,10 +15,10 @@ var Prelaunch = (function(){ function Prelaunch($) { this._ = 'prelaunch'; var s
         //    //else $(this).removeClass('inview');
         //});
         
-        $('#content-back').scrollingParallax({
-            staticSpeed: 0.7,
-            staticScrollLimit: false,
-        });
+        //$('#content-back').scrollingParallax({
+        //    staticSpeed: 0.7,
+        //    staticScrollLimit: false,
+        //});
         //$.scrollingParallax('/static/images/para_bg.jpg',{
         //    staticSpeed: 0.7,
         //    staticScrollLimit: false,

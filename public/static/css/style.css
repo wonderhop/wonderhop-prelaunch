@@ -54,11 +54,16 @@ body, html { margin:0; padding:0; background-color:/*#fd8c80*/ white; }
 #content-back { position:absolute; top:0; left:0; right:0; bottom:0; height: 7210px; /*background: url("/static/images/para_bg.jpg") repeat fixed left top transparent;*/}
 
 /* 920 / 900 -->  736/716 (0.8) | 598/578 (0.65) */
-.backslide { width:100%; height:736px; position:relative; /*display:none;*/ }
+/*.backslide { width:100%; height:736px; position:relative; /*display:none;*//* }*/
+
+.backslide { width:100%; height:920px; position:relative; /*display:none;*/ }
+
 /*.backslide.inview { display: block; }*/
 /*.backwhite { background-image: url("/static/images/white_overlay3-nq8.png"); position: absolute; top:0; left:0; right:0; bottom:0; }*/
 .backwhitefix { background-image: url("/static/images/white_overlay3-nq8-nq8.png"); position:fixed; top:0; left:0; right:0; bottom:0; }
-.back { width:100%; height:716px; border-bottom:20px solid transparent; }
+/*.back { width:100%; height:716px; border-bottom:20px solid transparent; }*/
+
+.back { width:100%; height:900px; border-bottom:20px solid transparent; }
 
 /*.backslide.backslide-1 { height:836px; }
 .backslide.backslide-1 .back { height: 816px; }
@@ -78,6 +83,8 @@ body, html { margin:0; padding:0; background-color:/*#fd8c80*/ white; }
 620 | 640
 650 | 670
 */
+
+/*
 .backslide.backslide-1 { height:770px; }
 .backslide.backslide-1 .back { height: 750px; }
 .backslide.backslide-2 { height:630px; }
@@ -100,6 +107,34 @@ body, html { margin:0; padding:0; background-color:/*#fd8c80*/ white; }
 .backslide.backslide-10 .back { height: 650px; }
 .backslide.backslide-11 { height:900px; }
 .backslide.backslide-11 .back { height: 920px; }
+*/
+
+/*.backslide.backslide-1 { height:920px; }
+.backslide.backslide-1 .back { height: 900px; }
+.backslide.backslide-2 { height:920px; }
+.backslide.backslide-2 .back { height: 900px; }
+.backslide.backslide-3 { height:610px; }
+.backslide.backslide-3 .back { height: 590px; }
+.backslide.backslide-4 { height:670px; }
+.backslide.backslide-4 .back { height: 650px; }
+.backslide.backslide-5 { height:640px; }
+.backslide.backslide-5 .back { height: 620px; }
+.backslide.backslide-6 { height:670px; }
+.backslide.backslide-6 .back { height: 650px; }
+.backslide.backslide-7 { height:640px; }
+.backslide.backslide-7 .back { height: 620px; }
+.backslide.backslide-8 { height:610px; }
+.backslide.backslide-8 .back { height: 590px; }
+.backslide.backslide-9 { height:640px; }
+.backslide.backslide-9 .back { height: 620px; }
+.backslide.backslide-10 { height:670px; }
+.backslide.backslide-10 .back { height: 650px; }
+.backslide.backslide-11 { height:900px; }
+.backslide.backslide-11 .back { height: 920px; }*/
+.backslide.backslide-8 { height:970px; }
+.backslide.backslide-8 .back { height: 950px; }
+.backslide.backslide-11 { height:850px; }
+.backslide.backslide-11 .back { height: 830px; }
 
 
 .card { width: 1140px; height: 920px; /*border:1px solid red;*/  }
