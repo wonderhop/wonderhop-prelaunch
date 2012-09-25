@@ -105,12 +105,13 @@ function invited_friendcount($email)
     $sub = subscriber($email);
     if ( ! $sub) return 0;
     $res = db()->query("select count(*) from subscribers where `invited_by` = {$sub['id']} and confirmed = 1;")->fetchAll();
-    error_log(print_r($res,true));
+    //error_log(print_r($res,true));
     return isset($res[0][0]) ? $res[0][0] : 0;
 }
 
 
-function send_confirm_email($email, $token, $inviter_email, $inviter_token) {
+function send_confirm_email($email, $token, $inviter_email, $inviter_token)
+{
     $body = get_confirmation_email($email, BASEURL . "?c=$token&r=$inviter_token", $inviter_email);
     send_sendgrid_email($email, $body, $body, 'Please confirm your Curio Road account');
 }
@@ -131,8 +132,8 @@ function send_invitation_email($email, $confirmation_token, $inviter_email, $inv
     send_sendgrid_email($email, $text, $body, "$inviter_email just sent you a $5 gift on Curio Road");
 }
 
-function send_sendgrid_email($email, $text, $html, $subject) {
-    
+function send_sendgrid_email($email, $text, $html, $subject)
+{    
     $crlf = "\n";
     $hdrs = array(
                   'From'    => 'Curio Road <hello@curioroad.com>',
@@ -157,7 +158,8 @@ function send_sendgrid_email($email, $text, $html, $subject) {
     $mail->send($email, $hdrs, $body);
 }
 
-function get_confirmation_email($email, $token_url, $inviter_email) {
+function get_confirmation_email($email, $token_url, $inviter_email)
+{
     $img_url = BASEURL . 'static/images/newsletter/wonderhop_invite/';
     
     $body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -260,7 +262,8 @@ width: 100%;}    </style>
     return $body;
 }
 
-function get_email($email, $token_url, $inviter_email) {
+function get_email($email, $token_url, $inviter_email)
+{
     $img_url = BASEURL . 'static/images/newsletter/wonderhop_invite/';
     $body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

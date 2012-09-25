@@ -17,7 +17,16 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
     <meta name="description" content="Discover uniquely lovely jewelry, home decor and gifts, all at insider prices. Get inspired today!" />
     <meta property="og:description" content="Discover uniquely lovely jewelry, home decor and gifts, all at insider prices. Get inspired today!" />
     <meta property="og:title"  name="title" content="Grab a $5 credit to shop Curio Road." />
-
+    
+    <?php
+    if(file_exists($tk_file = (dirname(__FILE__) . '/../tk_domain.key')) 
+      and ($tk_key = trim(file_get_contents($tk_file)))) {
+        ?>
+        <script type="text/javascript" src="//use.typekit.net/<?php echo $tk_key; ?>.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <?php
+    }
+    ?>
     
     <link rel="image_src" type="image/jpeg" href="/static/images/fb_thumb.jpeg" />
     <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Cantata+One">
