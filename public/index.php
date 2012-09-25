@@ -60,6 +60,11 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
         {
             return window.location.href.indexOf('?r=') > -1 ? getParameterByName('r') : window.location.href.split('/').pop();
         }
+        
+        function getCRef()
+        {
+            return window.location.href.indexOf('c=') > -1 ? getParameterByName('c') : null;
+        }
         /*
         function getConfirm()
         {
@@ -130,7 +135,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                     <h1 class="popup_title">Wonderful finds <br/>for an inspired life</h1>
                     <div class="control_link">
                         <a href="#" onclick="changePopupContentLogin();" id="login_link">LOGIN</a>
-                        <a href="#" onclick="changePopupContentRegister();" id="back_link" style="display:none;">BACK</a>
+                        <a href="#" onclick="is_referred ? changePopupContentReferred() : changePopupContentRegister();return false;" id="back_link" style="display:none;">BACK</a>
                     </div>
                     <script type="text/javascript">
                         function changePopupContentLogin(){
@@ -155,6 +160,23 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                 text_1 = 'Uniquely lovely jewelry, home decor',
                                 text_2 = 'and gifts. All at insider prices.',
                                 btn_text = 'Become a member';
+                            $('.block_inner_content').fadeOut(200, function() {
+                                $('.popup_title').html(title);
+                                $('.popup_content p.pc_l1').html(text_1);
+                                $('.popup_content p.pc_l2').html(text_2);
+                                $('#login_link').show();
+                                $('#back_link').hide();
+                                $('.actions button span').html(btn_text);
+                                $('.block_inner_content').fadeIn(200);
+                            });
+                        }
+                        
+                        function changePopupContentReferred(){
+                            var $ = jQuery,
+                                title = 'Wonderful finds<br/>for an inspired life',
+                                text_1 = 'Claim your $5 gift here. Uniquely lovely',
+                                text_2 = 'jewelry, home decor, and gifts.',
+                                btn_text = 'Claim Your Gift';
                             $('.block_inner_content').fadeOut(200, function() {
                                 $('.popup_title').html(title);
                                 $('.popup_content p.pc_l1').html(text_1);
@@ -191,8 +213,15 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                     <span>Become a member</span>
                                 </button>
                             </div>
-                    </form> 
-                </div>
+                        </form> 
+                        <script type="text/javascript">
+                            if ( ! getCRef() && getURef()) {
+                                console.log('is_referred');
+                                is_referred = true;
+                                changePopupContentReferred();
+                            }
+                        </script>
+                    </div>
                 
                 <script type="text/javascript">
                     (function($){
