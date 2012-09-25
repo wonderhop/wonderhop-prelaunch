@@ -404,9 +404,17 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                         //$(this).focus();
                     });
                     $('.backwhitefix, .ctext').not('.ctext-11').click(function(){
-                        var page = parseInt( window.scrollY / 920 ) + 1;
+                        var page = parseInt(window.scrollY /920) + 1;
+                        console.log(page);
                         if (page > 10) return;
-                        $.scrollTo(page * 920 + 150, 1400);
+                        var ph = 920, diffr = 0;
+                        //if (page === 1) diffr = 100;
+                        //if (page === 2) diffr = 50;
+                        var offset = ((page * 920) - diffr);
+                        //console.log(page);
+                        //console.log(offset);
+                        $(window).stop();
+                        $.scrollTo(offset, 1400);
                     });
                     $('#invitations-form').submit(function(ev,data){
                         $form = $(this);
