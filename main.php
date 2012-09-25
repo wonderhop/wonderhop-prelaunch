@@ -120,7 +120,7 @@ function send_invitation_email($email, $confirmation_token, $inviter_email, $inv
     $confirmation_link = personal_link($inviter_email, 1) . '&c=' . $confirmation_token;
     $body = get_email($email, $confirmation_link, $inviter_email);
     $text = "Congrats! $inviter_email has sent you a $5 gift on Curio Road.\n
-            You can now access Curio Road's invite-only shopping magazine of uniquely lovely jewelry, home decor and gifts – all at insider prices! 
+            You can now access Curio Road's invite-only shopping magazine of uniquely lovely jewelry, home decor and gifts - all at insider prices! 
             \n
             Curio Road membership is free, but spots are limited. click below to accept your invitation - but hurry, spots are going fast! \n
             Click here: <a href=\"$confirmation_link\">ACCEPT YOUR INVITATION</a> or copy this $confirmation_link into your browser.
@@ -224,9 +224,9 @@ width: 100%;}    </style>
                                 <td align="center" valign="top" width="365"><br />
                                 <a href="'. $token_url .'" title="CONFIRM" target="_blank"><img alt="CONFIRM" border="0" height="40" src="' . $img_url . 'confirm_button.png" style="display:block" width="240" /></a>
                                 <br />
-                                <a href="https://www.facebook.com/wonderhop" title="Curio Road on Facebook" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'facebook.png" width="31" /></a> &nbsp; <a href="https://twitter.com/wonderhop" title="Curio Road on Twitter" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'twitter.png" width="32" /></a>
+                                <a href="https://www.facebook.com/pages/Curio-Road/432587490109791" title="Curio Road on Facebook" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'facebook.png" width="31" /></a> &nbsp; <a href="https://twitter.com/curioroad" title="Curio Road on Twitter" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'twitter.png" width="32" /></a>
                                 <br />
-                                <a href="https://www.facebook.com/wonderhop" title="Curio Road on Facebook" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">FACEBOOK</font></a> &nbsp;&nbsp;  <a href="https://twitter.com/wonderhop" title="Curio Road on Twitter" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">TWITTER</font></a> &nbsp;&nbsp;&nbsp;
+                                <a href="https://www.facebook.com/pages/Curio-Road/432587490109791" title="Curio Road on Facebook" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">FACEBOOK</font></a> &nbsp;&nbsp;  <a href="https://twitter.com/curioroad" title="Curio Road on Twitter" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">TWITTER</font></a> &nbsp;&nbsp;&nbsp;
                                 <br /><br /></td>
                                 <td width="15"></td>
                             </tr>
@@ -296,7 +296,7 @@ width: 100%;}    </style>
                 <tr>
                     <td align="left" valign="top" width="112"><img alt="" border="0" height="153" src="' . $img_url . 'wonderhop_02.png" style="display:block" width="112" /></td>
                     <td align="center" valign="top" width="323"><a href="http://www.curioroad.com" title="Curio Road" target="_blank"><img alt="" border="0" height="78" src="' . $img_url . 'wonderhop_logo.png" style="display:block" width="321" /></a><br />
-                    <font color="#fd706b" size="+1" face="georgia">CONGRATS! <i>' . $inviter_email . '</i> just invited you to join Curio Road.</font></td>
+                    <font color="#fd706b" size="+1" face="georgia">Congrats! <i>' . $inviter_email . '</i> has sent you a $5 gift on Curio Road.</font></td>
                     <td align="left" valign="top" width="100"> </td>
                 </tr>
             </table>            
@@ -317,7 +317,7 @@ width: 100%;}    </style>
                         <table cellpadding="0" cellspacing="0" border="0" align="center" width="395">
                             <tr>
                                 <td width="15" bgcolor="#fff9df"></td>
-                                <td align="center" valign="top" width="365" bgcolor="#fff9df"><br /><font color="#7f767e" size="+0" face="georgia"><i>You can now access Curio Road\'s invite-only daily magazine of gorgeous and unique finds for home, style, and family <font color="#ff7267">all at up to 60% off!</font>
+                                <td align="center" valign="top" width="365" bgcolor="#fff9df"><br /><font color="#7f767e" size="+0" face="georgia"><i>You can now access Curio Road\'s invite-only shopping magazine of uniquely lovely jewelry, home decor and gifts &mdash; <font color="#ff7267">all at insider prices!</font>
                                 <br /><br />
                                 Curio Road membership is free, but spots are limited. click below to accept your invitation - but hurry, spots are going fast!</i></font><br /><br /></td>
                                 <td width="15" bgcolor="#fff9df"></td>
@@ -328,9 +328,9 @@ width: 100%;}    </style>
                                 <td align="center" valign="top" width="365"><br />
                                 <a href="'. $token_url .'" title="Accept your invitation" target="_blank"><img alt="Accept your invitation" border="0" height="40" src="' . $img_url . 'accept.png" style="display:block" width="240" /></a>
                                 <br />
-                                <a href="https://www.facebook.com/wonderhop" title="Curio ROad on Facebook" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'facebook.png" width="31" /></a> &nbsp; <a href="https://twitter.com/wonderhop" title="Curio Road on Twitter" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'twitter.png" width="32" /></a>
+                                <a href="https://www.facebook.com/pages/Curio-Road/432587490109791" title="Curio Road on Facebook" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'facebook.png" width="31" /></a> &nbsp; <a href="https://twitter.com/curioroad" title="Curio Road on Twitter" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'twitter.png" width="32" /></a>
                                 <br />
-                                <a href="https://www.facebook.com/wonderhop" title="Curio ROad on Facebook" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">FACEBOOK</font></a> &nbsp;&nbsp;  <a href="https://twitter.com/wonderhop" title="Curio Road on Twitter" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">TWITTER</font></a> &nbsp;&nbsp;&nbsp;
+                                <a href="https://www.facebook.com/pages/Curio-Road/432587490109791" title="Curio Road on Facebook" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">FACEBOOK</font></a> &nbsp;&nbsp;  <a href="https://twitter.com/curioroad" title="Curio Road on Twitter" target="_blank" style="color: #7f767e;"><font face="arial" size="-2">TWITTER</font></a> &nbsp;&nbsp;&nbsp;
                                 <br /><br /></td>
                                 <td width="15"></td>
                             </tr>

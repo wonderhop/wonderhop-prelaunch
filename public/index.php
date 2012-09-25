@@ -15,6 +15,9 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
     <meta http-equiv="Content-Type" name="content-type" content="text/html; charset=UTF-8" />
     <meta name="title" content="Curio Road | Unique finds for an inspired life" />
     <meta name="description" content="Discover uniquely lovely jewelry, home decor and gifts, all at insider prices. Get inspired today!" />
+    <meta property="og:description" content="Discover uniquely lovely jewelry, home decor and gifts, all at insider prices. Get inspired today!" />
+    <meta property="og:title"  name="title" content="Grab a $5 credit to shop Curio Road." />
+
     
     <link rel="image_src" type="image/jpeg" href="/static/images/fb_thumb.jpeg" />
     <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Cantata+One">
@@ -140,8 +143,8 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                         function changePopupContentRegister(){
                             var $ = jQuery,
                                 title = 'Wonderful finds<br/>for an inspired life',
-                                text_1 = 'Uniquely lovely finds to inspire your',
-                                text_2 = 'home, kitchen and family.',
+                                text_1 = 'Uniquely lovely jewelry, home decor',
+                                text_2 = 'and gifts. All at insider prices.',
                                 btn_text = 'Become a member';
                             $('.block_inner_content').fadeOut(200, function() {
                                 $('.popup_title').html(title);
@@ -155,8 +158,8 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                         }
                     </script>
                     <div class="popup_content">
-                        <p class="pc_l pc_l1">Uniquely lovely finds to inspire your</p> 
-                        <p class="pc_l pc_l2">home, kitchen and family.</p>
+                        <p class="pc_l pc_l1">Uniquely lovely jewelry, home decor</p> 
+                        <p class="pc_l pc_l2">and gifts. All at insider prices.</p>
                         <form onSubmit="return false;" action="" method="post" id="register-form1">
                             <input type="hidden" value="" name="url" class="document_url"/>
                             <div class="content">
@@ -434,7 +437,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                         <input type="hidden" id="key" value="" />
                         <input id="cloud_invite_input" class="invite-emails input-text required-entry" size="150" rel="1" type="text" name="emails" value="" />
                         <button id="cloud_invite_submit" type="submit" title="Send Invite" class="button"><span><span>Send</span></span></button>
-                        <div id="invitations-sent" style="font-size:14px;color:green;font-style:italic;position:absolute;right:-60px;bottom:55px;display:none;">INVITATIONS SENT !</div>
+                        <div id="invitations-sent" style="font-size:14px;color:#FF7268;position:absolute;right:-60px;bottom:55px;display:none;">INVITATIONS SENT !</div>
                     </form>
                     
                     <div id="gifts" style="display:none;">
