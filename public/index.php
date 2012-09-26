@@ -7,6 +7,13 @@ require_once dirname(__FILE__) . '/../main.php';
 if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
     confirm($_GET['c']);
 }
+$set_ad_code = true;
+if (isset($_COOKIE['prewh_email']) and isset($_GET['a']) and ($ad_sub = subscriber($_COOKIE['prewh_email'])) and ! $ad_sub['ad_code']) {
+    error_log($_COOKIE['prewh_email']);
+    error_log($_GET['a']);
+    set_ad_code_to_user($_COOKIE['prewh_email'], $_GET['a']);
+    $set_ad_code = false;
+}
 
 ?><!DOCTYPE html>
 <html>
@@ -58,13 +65,19 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
         
         function getURef()
         {
-            return window.location.href.indexOf('?r=') > -1 ? getParameterByName('r') : window.location.href.split('/').pop();
+            return window.location.href.indexOf('?r=') > -1 ? getParameterByName('r') : null;
         }
         
         function getCRef()
         {
             return window.location.href.indexOf('c=') > -1 ? getParameterByName('c') : null;
         }
+        
+        function getARef()
+        {
+            return window.location.href.indexOf('a=') > -1 ? getParameterByName('a') : null
+        }
+        
         /*
         function getConfirm()
         {
@@ -286,6 +299,12 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                                 //$html.css(htmlcss);
                                                 
                                                 $('#personal-link').val(resp.personal_link);
+                                                
+                                                if (getARef() && <?php echo $set_ad_code ? 'true' : 'false'; ?>) {
+                                                    $.get('/adcode.php','a=' + getARef(), function(data){
+                                                        
+                                                    });
+                                                }
                                                 $.post('/friendcount.php','count=1',function(data){
                                                     try{
                                                         resp = JSON.parse(data);

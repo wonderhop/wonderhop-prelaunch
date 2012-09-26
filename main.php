@@ -99,6 +99,14 @@ function subscriber($email_or_id_or_token, $fields = '`id`,`email`,`personal_tok
     return ($q->execute(array($id)) and ($res = $q->fetchAll(PDO::FETCH_ASSOC))) ? $res[0] : false ;
 }
 
+function email_is_invitation($email)
+{
+    if ( ! $email) return;
+    $sub = subscriber($email);
+    if ( ! $sub) return;
+    db()->query("update subscribers set invitation = 1 where `id` = {$sub['id']};");
+}
+
 function invited_friendcount($email)
 {
     //return 10;
@@ -107,6 +115,14 @@ function invited_friendcount($email)
     $res = db()->query("select count(*) from subscribers where `invited_by` = {$sub['id']} and confirmed = 1;")->fetchAll();
     //error_log(print_r($res,true));
     return isset($res[0][0]) ? $res[0][0] : 0;
+}
+
+function set_ad_code_to_user($user,$ad)
+{
+    $sub = subscriber($user,'*');
+    if ( ! $sub or $sub['invitation'] or ! empty($sub['ad_code'])) return;
+    $q = db()->prepare("update subscribers set `ad_code` = ? where `id` = {$sub['id']};");
+    $q->execute(array($ad));
 }
 
 

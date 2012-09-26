@@ -21,6 +21,7 @@ foreach($mail_list as $email) {
     if (existing_email($address)) continue;
     newemail_save($address, $inviter['id'], true);
     $sub = subscriber($address,'*');
+    email_is_invitation($sub['email']);
     send_invitation_email($sub['email'], $sub['confirm_token'], $inviter['email'], $inviter['personal_token']);
 }
 
