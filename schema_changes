@@ -1,0 +1,23 @@
+-- initial
+CREATE TABLE `subscribers` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `email` varchar(200) NOT NULL,
+  `is_user` tinyint(1) NOT NULL DEFAULT '0',
+  `personal_token` varchar(100) NOT NULL,
+  `invited_by` bigint(20) DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `confirmed` tinyint(1) NOT NULL DEFAULT '0',
+  `confirm_token` varchar(100) NOT NULL,
+  `slideshowed` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `personal_token` (`personal_token`),
+  UNIQUE KEY `confirm_token` (`confirm_token`)
+) ENGINE=MyISAM AUTO_INCREMENT=117 DEFAULT CHARSET=latin1
+
+
+-- add invitation flag and ad_code field
+alter table subscribers add column invitation boolean not null default false;
+alter table subscribers add column ad_code varchar(250) null after invited_by;
+
+
