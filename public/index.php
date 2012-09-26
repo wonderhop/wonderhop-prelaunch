@@ -82,6 +82,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
         function slideshowing(Sub)
         {
             if ( ! Sub.slideshowed) {
+                mixpanel.track('slide 1');
                 (function($){
                     $('.ctext.ctext-11').bind('inview', function(ev,is_in){
                         var $slide = $(this);
@@ -120,11 +121,16 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
         }
          
     </script>
+    <!-- start Mixpanel --><script type="text/javascript">(function(c,a){window.mixpanel=a;var b,d,h,e;b=c.createElement("script");b.type="text/javascript";b.async=!0;b.src=("https:"===c.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.1.min.js';d=c.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d);a._i=[];a.init=function(b,c,f){function d(a,b){var c=b.split(".");2==c.length&&(a=a[c[0]],b=c[1]);a[b]=function(){a.push([b].concat(Array.prototype.slice.call(arguments,0)))}}var g=a;"undefined"!==typeof f?
+g=a[f]=[]:f="mixpanel";g.people=g.people||[];h="disable track track_pageview track_links track_forms register register_once unregister identify name_tag set_config people.identify people.set people.increment".split(" ");for(e=0;e<h.length;e++)d(g,h[e]);a._i.push([b,c,f])};a.__SV=1.1})(document,window.mixpanel||[]);
+mixpanel.init("0cd44088582225fed6fb19d04638a752");</script><!-- end Mixpanel -->
 </head>
 <body>
 <div id="email_screen" <?php if (isset($_COOKIE['prewh_email'])): ?> style="display:none" <?php endif; ?>>
+    
     <?php if (!isset($_COOKIE['prewh_email'])): ?> 
         <script type="text/javascript">
+            mixpanel.track('homepage');
            jQuery.backstretch('/static/images/overlay1.jpg');
         </script>
      <?php endif; ?>
@@ -271,6 +277,11 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                         //$('#wrap').fadeIn('fast').delay(300);
                                         $('#wrap').show();
                                         if (resp.existing && Subscriber.slideshowed) {
+                                            mixpanel.track('last slide');
+                                            mixpanel.people.set({"$email": Subscriber.email, "$id" :Subscriber.personal_token});
+                                            mixpanel.people.identify(Subscriber.personal_token);
+                                            mixpanel.name_tag(Subscriber.email);
+                                            
                                             $.scrollTo(9300);
                                             if (getCookie('prewh_email')) {
                                                $('#wrap').css('visibility', 'visible');
@@ -431,6 +442,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
                                     window.location.href = resp.redirect;
                                     return false;
                                 }
+                                mixpanel.track('Invitation send');
                                 $('#invitations-sent').fadeIn('fast').delay(1000).fadeOut('slow');
                                 $('#cloud_invite_input').val('');
                             }
@@ -603,5 +615,6 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
     </div><!-- #content-box -->
     
 </div><!-- wrap -->
+
 </body>
 </html>
