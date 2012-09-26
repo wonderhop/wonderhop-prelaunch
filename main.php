@@ -120,7 +120,8 @@ function invited_friendcount($email)
 function set_ad_code_to_user($user,$ad)
 {
     $sub = subscriber($user,'*');
-    if ( ! $sub or $sub['invitation'] or ! empty($sub['ad_code'])) return;
+    /* if ( ! $sub or $sub['invitation'] or ! empty($sub['ad_code'])) return; */
+    if ( ! $sub or ! empty($sub['ad_code'])) return;
     $q = db()->prepare("update subscribers set `ad_code` = ? where `id` = {$sub['id']};");
     $q->execute(array($ad));
 }

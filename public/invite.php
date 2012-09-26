@@ -18,10 +18,11 @@ foreach($mail_list as $email) {
              ? substr($email,$from+1, $to-$from-1)
              : $email;
     error_log($address);
+    if (strpos($address,'@') === false) continue;
     if (existing_email($address)) continue;
     newemail_save($address, $inviter['id'], true);
     $sub = subscriber($address,'*');
-    email_is_invitation($sub['email']);
+    // email_is_invitation($sub['email']);
     send_invitation_email($sub['email'], $sub['confirm_token'], $inviter['email'], $inviter['personal_token']);
 }
 
