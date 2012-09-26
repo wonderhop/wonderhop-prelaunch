@@ -8,9 +8,7 @@ if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
     confirm($_GET['c']);
 }
 $set_ad_code = true;
-if (isset($_COOKIE['prewh_email']) and isset($_GET['a']) and ($ad_sub = subscriber($_COOKIE['prewh_email'])) and ! $ad_sub['ad_code']) {
-    error_log($_COOKIE['prewh_email']);
-    error_log($_GET['a']);
+if (isset($_COOKIE['prewh_email']) and isset($_GET['a']) and ($ad_sub = subscriber($_COOKIE['prewh_email'])) and empty($ad_sub['ad_code'])) {
     set_ad_code_to_user($_COOKIE['prewh_email'], $_GET['a']);
     $set_ad_code = false;
 }
@@ -316,8 +314,8 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                                                 $('#personal-link').val(resp.personal_link);
                                                 
                                                 if (getARef() && <?php echo $set_ad_code ? 'true' : 'false'; ?>) {
-                                                    $.get('/adcode.php','a=' + getARef(), function(data){
-                                                        
+                                                    $.get('/adcode.php','a=' + getARef() + '&e=' + encodeURIComponent(Subscriber.email), function(data){
+                                                       console.log('jsa');
                                                     });
                                                 }
                                                 $.post('/friendcount.php','count=1',function(data){
