@@ -343,8 +343,7 @@ width: 100%;}    </style>
                                         <i>
                                             Our members all have a passion for <b>unique and beautiful designs</b> &mdash; and we help them discover one-of-a-kind jewelry, home decor and gifts to inspire their lives. 
                                             <br /><br />
-                                            Membership is free, but spots are limited.<br/> <b>Click below to accept your invitation</b> <br/> but hurry, we only have a few spots left this week.
-                                            Click here:
+                                            Membership is free, but spots are limited.<br/> <b>Click below to accept your invitation</b> - <br/> but hurry, we only have a few spots left this week.
                                         </i>
                                     </font>
                                     <br />
@@ -356,12 +355,10 @@ width: 100%;}    </style>
                             <tr>
                                 <td width="15"></td>
                                 <td align="center" valign="top" width="365"><br />
-                                <a href="'. $token_url .'" title="Accept your invitation" target="_blank" style="background: url(\''. $img_url .'accept2.png\') no-repeat scroll left top #A994A4;color: white; display: block; font-family: Arial,Helvetica,sans-serif; font-size: 14px; font-weight: bold; height: 29px; letter-spacing: 0.5px; padding-top: 11px; text-decoration: none; text-transform: uppercase; vertical-align: middle; width: 240px;">
-                                    <span>Accept your Invitation !</span>
-                                    <!--<img alt="Accept your invitation" border="0" height="40" src="' . $img_url . 'accept.png" style="display:block" width="240" />-->
+                                <a href="'. $token_url .'" title="Accept your invitation" target="_blank" style="background:#A994A4;color: white; display: block; font-family: Arial,Helvetica,sans-serif; font-size: 14px; font-weight: bold; height: 40px; letter-spacing: 0.5px; text-decoration: none; text-transform: uppercase; vertical-align: middle; width: 240px; position:relative;">
+                                    <img alt="" border="0" src="' . $img_url . 'accept_top_12.png" width="240" height="12" style="display:block; position:absolute; top:10px; left:0;"/>
+                                    <img alt="Accept Your Invitation" border="0" src="' . $img_url . 'accept_bottom_28.png" width="240" height="28" style="display:block; position:absolute; top:10px; left:0;"/>
                                 </a>
-                                <br />
-                                or copy this '. $token_url .' into your browser.
                                 <br />
                                 <br />
                                 <a href="https://www.facebook.com/pages/Curio-Road/432587490109791" title="Curio Road on Facebook" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'facebook.png" width="31" /></a> &nbsp; <a href="https://twitter.com/curioroad" title="Curio Road on Twitter" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'twitter.png" width="32" /></a>
