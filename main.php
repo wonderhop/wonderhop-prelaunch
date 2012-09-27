@@ -316,7 +316,7 @@ width: 100%;}    </style>
                 <tr>
                     <td align="left" valign="top" width="112"><img alt="" border="0" height="153" src="' . $img_url . 'wonderhop_02.png" style="display:block" width="112" /></td>
                     <td align="center" valign="top" width="323"><a href="http://www.curioroad.com" title="Curio Road" target="_blank"><img alt="" border="0" height="78" src="' . $img_url . 'wonderhop_logo.png" style="display:block" width="321" /></a><br />
-                    <font color="#fd706b" size="+1" face="georgia">Congrats! <i>' . $inviter_email . '</i> has sent you a $5 gift on Curio Road.</font></td>
+                    <font color="#fd706b" size="+1" face="georgia">Congrats! <i>' . $inviter_email . '</i> just recommended you for membership to Curio Road.</font></td>
                     <td align="left" valign="top" width="100"> </td>
                 </tr>
             </table>            
@@ -337,16 +337,31 @@ width: 100%;}    </style>
                         <table cellpadding="0" cellspacing="0" border="0" align="center" width="395">
                             <tr>
                                 <td width="15" bgcolor="#fff9df"></td>
-                                <td align="center" valign="top" width="365" bgcolor="#fff9df"><br /><font color="#7f767e" size="+0" face="georgia"><i>You can now access Curio Road\'s invite-only shopping magazine of uniquely lovely jewelry, home decor and gifts &mdash; <font color="#ff7267">all at insider prices!</font>
-                                <br /><br />
-                                Curio Road membership is free, but spots are limited. click below to accept your invitation - but hurry, spots are going fast!</i></font><br /><br /></td>
+                                <td align="center" valign="top" width="365" bgcolor="#fff9df">
+                                    <br />
+                                    <font color="#7f767e" size="+0" face="georgia">
+                                        <i>
+                                            Our members all have a passion for <b>unique and beautiful designs</b> &mdash; and we help them discover one-of-a-kind jewelry, home decor and gifts to inspire their lives. 
+                                            <br /><br />
+                                            Membership is free, but spots are limited.<br/> <b>Click below to accept your invitation</b> <br/> but hurry, we only have a few spots left this week.
+                                            Click here:
+                                        </i>
+                                    </font>
+                                    <br />
+                                    <br />
+                                </td>
                                 <td width="15" bgcolor="#fff9df"></td>
                             </tr>
                             
                             <tr>
                                 <td width="15"></td>
                                 <td align="center" valign="top" width="365"><br />
-                                <a href="'. $token_url .'" title="Accept your invitation" target="_blank"><img alt="Accept your invitation" border="0" height="40" src="' . $img_url . 'accept.png" style="display:block" width="240" /></a>
+                                <a href="'. $token_url .'" title="Accept your invitation" target="_blank">
+                                    <img alt="Accept your invitation" border="0" height="40" src="' . $img_url . 'accept.png" style="display:block" width="240" />
+                                </a>
+                                <br />
+                                or copy this '. $token_url .' into your browser.
+                                <br />
                                 <br />
                                 <a href="https://www.facebook.com/pages/Curio-Road/432587490109791" title="Curio Road on Facebook" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'facebook.png" width="31" /></a> &nbsp; <a href="https://twitter.com/curioroad" title="Curio Road on Twitter" target="_blank"><img alt="" border="0" height="29" src="' . $img_url . 'twitter.png" width="32" /></a>
                                 <br />
