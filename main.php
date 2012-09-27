@@ -137,16 +137,16 @@ function send_invitation_email($email, $confirmation_token, $inviter_email, $inv
 {    
     $confirmation_link = personal_link($inviter_email, 1) . '&c=' . $confirmation_token;
     $body = get_email($email, $confirmation_link, $inviter_email);
-    $text = "Congrats! $inviter_email has sent you a $5 gift on Curio Road.\n
-            You can now access Curio Road's invite-only shopping magazine of uniquely lovely jewelry, home decor and gifts - all at insider prices! 
+    $text = "Congrats! $inviter_email just recommended you for membership to Curio Road.\n
+            Our members all have a passion for <b>unique and beautiful designs</b> -- and we help them discover one-of-a-kind jewelry, home décor and gifts to inspire their lives. 
             \n
-            Curio Road membership is free, but spots are limited. click below to accept your invitation - but hurry, spots are going fast! \n
+            Membership is free, but spots are limited. <b>Click below to accept your invitation</b> - but hurry, we only have a few spots left this week. \n
             Click here: <a href=\"$confirmation_link\">ACCEPT YOUR INVITATION</a> or copy this $confirmation_link into your browser.
     ";
     //error_log($text);
     //error_log($email);
     //error_log($body);
-    send_sendgrid_email($email, $text, $body, "$inviter_email just sent you a $5 gift on Curio Road");
+    send_sendgrid_email($email, $text, $body, "$inviter_email just gave you access to Curio Road");
 }
 
 function send_sendgrid_email($email, $text, $html, $subject)
