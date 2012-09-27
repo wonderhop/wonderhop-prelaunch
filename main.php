@@ -355,9 +355,8 @@ width: 100%;}    </style>
                             <tr>
                                 <td width="15"></td>
                                 <td align="center" valign="top" width="365"><br />
-                                <a href="'. $token_url .'" title="Accept your invitation" target="_blank" style="background:#A994A4;color: white; display: block; font-family: Arial,Helvetica,sans-serif; font-size: 14px; font-weight: bold; height: 40px; letter-spacing: 0.5px; text-decoration: none; text-transform: uppercase; vertical-align: middle; width: 240px; position:relative;">
-                                    <img alt="" border="0" src="' . $img_url . 'accept_top_12.png" width="240" height="12" style="display:block; position:absolute; top:10px; left:0;"/>
-                                    <img alt="Accept Your Invitation" border="0" src="' . $img_url . 'accept_bottom_28.png" width="240" height="28" style="display:block; position:absolute; top:10px; left:0;"/>
+                                <a href="'. $token_url .'" title="Accept your invitation" target="_blank" style="color: white; display: block; font-family: Arial,Helvetica,sans-serif; font-size: 14px; font-weight: bold; height: 40px; letter-spacing: 0.5px; text-decoration: none; text-transform: uppercase; vertical-align: middle; width: 240px; position:relative; background:url(\''. $img_url .'accept2.png\') no-repeat scroll left top #A994A4">
+                                    <span style="font-family:Geneva,Arial,sans-serif;display:block; max-width:240px; max-height:20px; padding-top:12px;">ACCEPT YOUR INVITATION</span>
                                 </a>
                                 <br />
                                 <br />
