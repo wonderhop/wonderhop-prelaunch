@@ -356,8 +356,9 @@ width: 100%;}    </style>
                             <tr>
                                 <td width="15"></td>
                                 <td align="center" valign="top" width="365"><br />
-                                <a href="'. $token_url .'" title="Accept your invitation" target="_blank">
-                                    <img alt="Accept your invitation" border="0" height="40" src="' . $img_url . 'accept.png" style="display:block" width="240" />
+                                <a href="'. $token_url .'" title="Accept your invitation" target="_blank" style="background: url(\''. $img_url .'accept2.png\') no-repeat scroll left top #A994A4;color: white; display: block; font-family: Arial,Helvetica,sans-serif; font-size: 14px; font-weight: bold; height: 29px; letter-spacing: 0.5px; padding-top: 11px; text-decoration: none; text-transform: uppercase; vertical-align: middle; width: 240px;">
+                                    <span>Accept your Invitation !</span>
+                                    <!--<img alt="Accept your invitation" border="0" height="40" src="' . $img_url . 'accept.png" style="display:block" width="240" />-->
                                 </a>
                                 <br />
                                 or copy this '. $token_url .' into your browser.
