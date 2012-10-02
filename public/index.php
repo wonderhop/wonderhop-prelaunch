@@ -198,7 +198,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                                 title = 'Wonderful finds<br/>for an inspired life',
                                 text_1 = 'Accept your invite here. Uniquely lovely',
                                 text_2 = 'jewelry, home decor, and gifts.',
-                                btn_text = 'Claim Your Gift';
+                                btn_text = 'Become a member';
                             $('.block_inner_content').fadeOut(200, function() {
                                 $('.popup_title').html(title);
                                 $('.popup_content p.pc_l1').html(text_1);
