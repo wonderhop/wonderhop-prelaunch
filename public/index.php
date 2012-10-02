@@ -102,6 +102,7 @@ if (isset($_COOKIE['prewh_email']) and isset($_GET['a']) and ($ad_sub = subscrib
                             if(is_in) {
                                 $slide.data('slideshowed', true);
                                 Sub.slideshowed = true;
+                                mixpanel.track('last slide');
                                 $.post('/slideshowed.php','code='+Sub.personal_token);
                             }
                         }
@@ -292,7 +293,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                                         //$('#wrap').fadeIn('fast').delay(300);
                                         $('#wrap').show();
                                         if (resp.existing && Subscriber.slideshowed) {
-                                            mixpanel.track('last slide');
+                                            mixpanel.track('autoscroll to invite');
                                             mixpanel.people.set({"$email": Subscriber.email, "$id" :Subscriber.personal_token});
                                             mixpanel.people.identify(Subscriber.personal_token);
                                             mixpanel.name_tag(Subscriber.email);
