@@ -519,7 +519,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                         <div id="invitations-sent" style="font-size:14px;color:#FF7268;position:absolute;right:-60px;bottom:55px;display:none;">INVITATIONS SENT !</div>
                     </form>
                     
-                    <div id="gifts" style="display:none;">
+                    <div id="gifts" style="">
                         <div class="money initial">
                             <span>GET STARTED!</span>
                         </div>
@@ -527,26 +527,40 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                             <li class="i-level i-level-6"><span class="ammount">$60</span><span class="remainder"></span></li>
                             <li class="i-level i-level-5"><span class="ammount">$50</span><span class="remainder"></span></li>
                             <li class="i-level i-level-4"><span class="ammount">$40</span><span class="remainder"></span></li>
-                            <li class="i-level i-level-3"><span class="ammount">$30</span><span class="remainder"></span></li>
-                            <li class="i-level i-level-2"><span class="ammount">$20</span><span class="remainder"></span></li>
-                            <li class="i-level i-level-1"><span class="ammount">$10</span><span class="remainder"></span></li>
+                            <li class="i-level i-level-3"><span class="ammount">$20</span><span class="remainder"></span></li>
+                            <li class="i-level i-level-2"><span class="ammount">$10</span><span class="remainder"></span></li>
+                            <li class="i-level i-level-1"><span class="ammount">SKIP THE LINE,<br/>SHOP ON 10/10</span><span class="remainder"></span></li>
                         </ul>
                     </div>
                     <script type="text/javascript">(function($) {
                         
                         function friends_invited(fcount)
                         {
-                            var fc = (fcount > 30) ? 30 : fcount, 
-                                rem = (fc%5) ? (5 - (fc%5)) : 0,
-                                level = parseInt((fc - (rem ? 5 - rem : 0)) /5);
-                            //if (fcount < 5) {
-                            //    fc = fcount; level = 0; rem = 5-fcount;
-                            //}
-                            console.log(fc, rem, level);
-                            activate_winning(level, rem);
+                            //var fc = (fcount > 30) ? 30 : fcount, 
+                            //    rem = (fc%5) ? (5 - (fc%5)) : 0,
+                            //    level = parseInt((fc - (rem ? 5 - rem : 0)) /5);
+                            ////if (fcount < 5) {
+                            ////    fc = fcount; level = 0; rem = 5-fcount;
+                            ////}
+                            //console.log(fc, rem, level);
+                            //activate_winning(level, rem);
+                            var fc = (fcount > 15) ? 15 : fcount, rem, level, msg = 0;
+                            switch(true) {
+                                case (fc <= 2) :
+                                    level = 1; rem = 2-fc; msg= 'skip the line<br/>shop on 10/10'; break;
+                                case (fc <= 6) :
+                                    level = 2; rem = 6-fc; break;
+                                case (fc <= 10):
+                                    level = 3; rem = 10-fc; break;
+                                case (fc <= 15):
+                                    level = 4; rem = 15-fc; break;
+                                default:
+                                    level = 0; rem = 0;
+                            }
+                            activate_winning(level,rem, msg);
                         }
                         
-                        function activate_winning(level, remainder)
+                        function activate_winning(level, remainder, msg, add_msg_class, rem_msg_class)
                         {
                             var $cc = $('.i-level-'+level);
                             if ( ! $cc.length && level != 0) return;
@@ -562,7 +576,10 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                                 $('.money span').html('+' + remainder + ' INVITES TO ' + $('.ammount',$nc).text() + '!');
                             } else {
                                 $cc.addClass('current');
-                                $('.money span').html('YOU\'VE EARNED ' + $('.ammount',$cc).text() + '!');
+                                msg = msg ? msg : ('YOU\'VE EARNED ' + $('.ammount',$cc).html() + '!');
+                                $('.money span').html(msg);
+                                if (add_msg_class) $('.money span').addClass(add_msg_class);
+                                if (rem_msg_class) $('.money span').removeClass(rem_msg_class);
                             }
                         }
                         
