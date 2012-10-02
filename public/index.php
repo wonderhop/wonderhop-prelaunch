@@ -156,7 +156,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                     <h1 class="popup_title">Wonderful finds <br/>for an inspired life</h1>
                     <div class="control_link">
                         <a href="#" onclick="changePopupContentLogin();" id="login_link">LOGIN</a>
-                        <a href="#" onclick="is_referred ? changePopupContentReferred() : changePopupContentRegister();return false;" id="back_link" style="display:none;">BACK</a>
+                        <a href="#" onclick="(typeof is_referred != 'undefined' && is_referred)? changePopupContentReferred() : changePopupContentRegister();return false;" id="back_link" style="display:none;">BACK</a>
                     </div>
                     <script type="text/javascript">
                         function changePopupContentLogin(){
@@ -195,7 +195,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                         function changePopupContentReferred(){
                             var $ = jQuery,
                                 title = 'Wonderful finds<br/>for an inspired life',
-                                text_1 = 'Claim your $5 gift here. Uniquely lovely',
+                                text_1 = 'Accept your invite here. Uniquely lovely',
                                 text_2 = 'jewelry, home decor, and gifts.',
                                 btn_text = 'Claim Your Gift';
                             $('.block_inner_content').fadeOut(200, function() {
@@ -236,7 +236,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                             </div>
                         </form> 
                         <script type="text/javascript">
-                            if ( ! getCRef() && getURef()) {
+                            if (getURef()) {
                                 console.log('is_referred');
                                 is_referred = true;
                                 changePopupContentReferred();
