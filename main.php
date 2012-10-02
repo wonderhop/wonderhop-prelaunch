@@ -112,7 +112,7 @@ function invited_friendcount($email)
     //return 10;
     $sub = subscriber($email);
     if ( ! $sub) return 0;
-    $res = db()->query("select count(*) from subscribers where `invited_by` = {$sub['id']} and confirmed = 1 or slideshowed = 1;")->fetchAll();
+    $res = db()->query("select count(*) from subscribers where `invited_by` = {$sub['id']} and (confirmed = 1 or slideshowed = 1);")->fetchAll();
     //error_log(print_r($res,true));
     return isset($res[0][0]) ? $res[0][0] : 0;
 }
