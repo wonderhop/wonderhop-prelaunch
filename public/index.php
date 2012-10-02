@@ -21,7 +21,7 @@ if (isset($_COOKIE['prewh_email']) and isset($_GET['a']) and ($ad_sub = subscrib
     <meta name="title" content="Curio Road | Unique finds for an inspired life" />
     <meta name="description" content="Discover uniquely lovely jewelry, home decor and gifts, all at insider prices. Get inspired today!" />
     <meta property="og:description" content="Discover uniquely lovely jewelry, home decor and gifts, all at insider prices. Get inspired today!" />
-    <meta property="og:title"  name="title" content="Grab a $5 credit to shop Curio Road." />
+    <meta property="og:title"  name="title" content="You're invited to join Curio Road." />
     
     <?php
     if(file_exists($tk_file = (dirname(__FILE__) . '/../tk_domain.key')) 
@@ -154,7 +154,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
         <div class="popup_register block_popup" >
             <div class="block_popup_inner" style="background:white;">
                 <div class="block_inner_content" style="width:100%;height:100%;">
-                    <h1 class="popup_title">Wonderful finds <br/>for an inspired life</h1>
+                    <h1 class="popup_title">Wonderful finds <br/>for an inspired life.</h1>
                     <div class="control_link">
                         <a href="#" onclick="changePopupContentLogin();" id="login_link">LOGIN</a>
                         <a href="#" onclick="(typeof is_referred != 'undefined' && is_referred)? changePopupContentReferred() : changePopupContentRegister();return false;" id="back_link" style="display:none;">BACK</a>
@@ -178,9 +178,9 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                         }
                         function changePopupContentRegister(){
                             var $ = jQuery,
-                                title = 'Wonderful finds<br/>for an inspired life',
+                                title = 'Wonderful finds<br/>for an inspired life.',
                                 text_1 = 'Uniquely lovely jewelry, home decor',
-                                text_2 = 'and gifts. All at insider prices.',
+                                text_2 = 'and gifts. All at member-only prices.',
                                 btn_text = 'Become a member';
                             $('.block_inner_content').fadeOut(200, function() {
                                 $('.popup_title').html(title);
@@ -195,7 +195,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                         
                         function changePopupContentReferred(){
                             var $ = jQuery,
-                                title = 'Wonderful finds<br/>for an inspired life',
+                                title = 'Wonderful finds<br/>for an inspired life.',
                                 text_1 = 'Accept your invite here. Uniquely lovely',
                                 text_2 = 'jewelry, home decor, and gifts.',
                                 btn_text = 'Become a member';
@@ -212,7 +212,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                     </script>
                     <div class="popup_content">
                         <p class="pc_l pc_l1">Uniquely lovely jewelry, home decor</p> 
-                        <p class="pc_l pc_l2">and gifts. All at insider prices.</p>
+                        <p class="pc_l pc_l2">and gifts. All at member-only prices.</p>
                         <form onSubmit="return false;" action="" method="post" id="register-form1">
                             <input type="hidden" value="" name="url" class="document_url"/>
                             <div class="content">
@@ -620,7 +620,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                             function post_on_wall() {
                                 var personal_link = Subscriber.personal_link;
                                 jQuery('.fb-share.shareitem a').attr('share_url',personal_link);
-                                url = 'http://www.facebook.com/sharer.php?u='+personal_link+'&t=Grab a $5 credit to shop Curio Road.';
+                                url = 'http://www.facebook.com/sharer.php?u='+personal_link+'&t=You\'re invited to join Curio Road.';
                                 window.open(url, "Post on Wall", "width=780, height=410, toolbar=0, scrollbars=0, status=0, resizable=0, location=0, menuBar=0, left=0, top=0");
                             }
                         </script>
@@ -634,7 +634,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                                     left   = (jQuery(window).width()  - width)  / 2,
                                     top    = (jQuery(window).height() - height) / 2,
                                     url    = 'http://twitter.com/share/?url=' + Subscriber.personal_link,
-                                    eurl   = url+'&text=Grab a $5 credit to shop Curio Road. Discover uniquely lovely jewelry, home decor and gifts, all at insider prices',
+                                    eurl   = url+'&text=You\'re invited to join Curio Road. Discover uniquely lovely jewelry, home decor and gifts, all at insider prices',
                                     opts   = 'status=1' +
                                             ',width='  + width  +
                                             ',height=' + height +
