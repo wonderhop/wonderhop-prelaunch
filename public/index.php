@@ -297,7 +297,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                                             mixpanel.people.identify(Subscriber.personal_token);
                                             mixpanel.name_tag(Subscriber.email);
                                             
-                                            $.scrollTo(9300);
+                                            $.scrollTo(9230);
                                             if (getCookie('prewh_email')) {
                                                $('#wrap').css('visibility', 'visible');
                                             }
