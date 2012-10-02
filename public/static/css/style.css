@@ -296,19 +296,20 @@ label[for=terms] { width: auto; }
 .block_popup .popup_content .form-list li .validation-advice { position:absolute; bottom:-14px;  }
 /*#become_member { cursor:pointer;font-weight:bold; }*/
   
-#gifts { position: absolute; right: 237px; top: 310px; width: 200px; height: 330px; }
+#gifts { position: absolute; right: 237px; top: 310px; width: 250px; height: 280px; }
 #gifts .money { color: #ff6f67; font-size: 17px; font-style: italic; position: absolute; left:0; top:0; height:50px;
     font-family: "letter-gothic-std",monospace; font-weight: bold; padding-top:7px; width:100%;
     background: url("/static/images/invite_dotline.png") no-repeat scroll -6px top; }
 #gifts .money.initial { background: url("/static/images/invite_dotline_initial.png") no-repeat scroll -6px top;  }
-#gifts .indicator{ background: url("/static/images/gift_ind_back.png") no-repeat ; height: 260px; position: absolute;
-    left:0; top: 40px; width: 200px; display: block; margin:0; padding:16px 0 0; list-style:none; }
-#gifts .indicator .i-level { height:48px; margin-top: -8px; margin-left: 80px; position:relative;  }
+#gifts .indicator{ background: url("/static/images/gift_ind_back.png") no-repeat ; height: 210px; position: absolute;
+    left:0; top: 40px; width: 250px; display: block; margin:0; padding:16px 0 0; list-style:none; }
+#gifts .indicator .i-level { height: 60px; margin-left: 75px; margin-top: -9px; position: relative;  }
 #gifts .indicator .i-level .ammount { display: none; background: white; color: #ff6f67; font-size: 30px; font-style: italic;
     position: absolute; left: 60px; top: 5px; width: 50px; font-family: "letter-gothic-std",monospace; }
-#gifts .indicator .i-level.active { background: url("/static/images/wallet.png") left bottom no-repeat; } 
+#gifts .indicator .i-level.active { background: url("/static/images/wallet.png") left 8px no-repeat; } 
 #gifts .indicator .i-level.current .ammount { display:block; }
 
+#gifts .indicator .i-level .skipper { display: block; font-size: 14px; font-weight: bold; left: 59px; width: 117px; padding-top:7px; font-style:normal; }
 
 #gifts .indicator .i-level .remainder { display: none; font-family: Georgia,serif; font-size: 13px; font-weight: bold;
     color: #FF6F67; line-height: 1; text-align: center; position: absolute; left: 0; top: 16px; width: 50px; }

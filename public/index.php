@@ -524,8 +524,6 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                             <span>GET STARTED!</span>
                         </div>
                         <ul class="indicator">
-                            <li class="i-level i-level-6"><span class="ammount">$60</span><span class="remainder"></span></li>
-                            <li class="i-level i-level-5"><span class="ammount">$50</span><span class="remainder"></span></li>
                             <li class="i-level i-level-4"><span class="ammount">$40</span><span class="remainder"></span></li>
                             <li class="i-level i-level-3"><span class="ammount">$20</span><span class="remainder"></span></li>
                             <li class="i-level i-level-2"><span class="ammount">$10</span><span class="remainder"></span></li>
@@ -544,20 +542,20 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                             ////}
                             //console.log(fc, rem, level);
                             //activate_winning(level, rem);
-                            var fc = (fcount > 15) ? 15 : fcount, rem, level, msg = 0;
+                            var fc = (fcount > 15) ? 15 : fcount, rem, level, msg = 0, acls, rcls;
                             switch(true) {
                                 case (fc <= 2) :
-                                    level = 1; rem = 2-fc; msg= 'skip the line<br/>shop on 10/10'; break;
+                                    rem = 2-fc; level = rem ? 0 : 1; msg = 'YOU\'VE SKIPPED THE LINE!'; acls = 'skipper'; break;
                                 case (fc <= 6) :
-                                    level = 2; rem = 6-fc; break;
+                                    rem = 6-fc; level = rem ? 1 : 2; rcls = 'skipper'; break;
                                 case (fc <= 10):
-                                    level = 3; rem = 10-fc; break;
+                                    rem = 10-fc; level = rem ? 2 : 3; rcls = 'skipper'; break;
                                 case (fc <= 15):
-                                    level = 4; rem = 15-fc; break;
+                                    rem = 15-fc; level = rem ? 3 : 4; rcls = 'skipper'; break;
                                 default:
                                     level = 0; rem = 0;
                             }
-                            activate_winning(level,rem, msg);
+                            activate_winning(level,rem, msg, acls, rcls);
                         }
                         
                         function activate_winning(level, remainder, msg, add_msg_class, rem_msg_class)
@@ -573,13 +571,17 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                                 $('.indicator li').removeClass('remains');
                                 $('.remainder',$nc).html(''+remainder+'<br/><span style="color:gray;font-weight:normal;">more</span>');
                                 $nc.addClass('remaining');
-                                $('.money span').html('+' + remainder + ' INVITES TO ' + $('.ammount',$nc).text() + '!');
+                                $('.money span').html('+' + remainder + ' INVITES TO ' + $('.ammount',$nc).text().slice(0,5) + '!');
+                                if (add_msg_class) { $('.money span').addClass(add_msg_class); $('.ammount',$cc).addClass(add_msg_class); }
+                                if (rem_msg_class) { $('.money span').removeClass(rem_msg_class); $('.ammount',$cc).removeClass(rem_msg_class); }
                             } else {
                                 $cc.addClass('current');
-                                msg = msg ? msg : ('YOU\'VE EARNED ' + $('.ammount',$cc).html() + '!');
+                                msg = msg ? msg : ('YOU\'VE EARNED ' + $('.ammount',$cc).text() + '!');
                                 $('.money span').html(msg);
-                                if (add_msg_class) $('.money span').addClass(add_msg_class);
-                                if (rem_msg_class) $('.money span').removeClass(rem_msg_class);
+                                console.log(add_msg_class);
+                                console.log(rem_msg_class);
+                                if (add_msg_class) { $('.money span').addClass(add_msg_class); $('.ammount',$cc).addClass(add_msg_class); }
+                                if (rem_msg_class) { $('.money span').removeClass(rem_msg_class); $('.ammount',$cc).removeClass(rem_msg_class); }
                             }
                         }
                         
