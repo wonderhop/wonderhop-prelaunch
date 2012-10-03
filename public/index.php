@@ -103,8 +103,10 @@ if (isset($_COOKIE['prewh_email']) and isset($_GET['a']) and ($ad_sub = subscrib
             //    console.log("mixpanel.track('homepage');");
             //}
             if ( ! Sub.slideshowed) {
-                mixpanel.track('slide 1');
-                console.log("mixpanel.track('slide 1');");
+                if (Sub.register) {
+                    mixpanel.track('slide 1');
+                    console.log("mixpanel.track('slide 1');");
+                }
                 (function($){
                     $('.ctext.ctext-11').bind('inview', function(ev,is_in){
                         var $slide = $(this);
