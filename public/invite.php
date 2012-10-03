@@ -20,7 +20,7 @@ foreach($mail_list as $email) {
     error_log($address);
     if (strpos($address,'@') === false) continue;
     if (existing_email($address)) continue;
-    newemail_save($address, $inviter['id'], true);
+    newemail_save($address, $inviter['id'], true, false);
     $sub = subscriber($address,'*');
     // email_is_invitation($sub['email']);
     send_invitation_email($sub['email'], $sub['confirm_token'], $inviter['email'], $inviter['personal_token']);

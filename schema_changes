@@ -16,8 +16,10 @@ CREATE TABLE `subscribers` (
 ) ENGINE=MyISAM AUTO_INCREMENT=117 DEFAULT CHARSET=latin1
 
 
--- add invitation flag and ad_code field
-alter table subscribers add column invitation boolean not null default false;
+-- add ad_code field
 alter table subscribers add column ad_code varchar(250) null after invited_by;
 
+
+-- add is_user flag
+alter table subscribers add column is_user boolean not null default true;
 

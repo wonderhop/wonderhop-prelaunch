@@ -57,39 +57,40 @@ function existing_referrer($token)
     $q = db()->prepare("select id from subscribers where personal_token = ?;");
     return ($q->execute(array(trim($token))) and ($res = $q->fetchAll())) ? $res[0]['id'] : false ;
 }
-/*
-function existing_subscriber($email_or_id_or_token)
+
+function newemail_save($email, $invited_by = NULL, $no_confirm = false, $is_user = true)
 {
-    $field = is_numeric($email_or_id_or_token) ? 'id' : (strpos($email_or_id_or_token,'@') ? 'email' : 'personal_token');
-    $val = trim(($field === 'personal_token') ? $email_or_id_or_token : strtolower($email_or_id_or_token));
-    $q = db()->prepare("select id from subscribers where $field = ?;");
-    return ($q->execute(array($val)) and ($res = $q->fetchAll(PDO::FETCH_ASSOC))) ? $res[0]['id'] : false ;
-}
-*/
-function newemail_save($email, $invited_by = NULL, $no_confirm = false)
-{
-    error_log($invited_by);
-    list($fields,$values, $vph, $inviter) = 
-      array('(email,personal_token,confirm_token', array($email = trim(strtolower($email)),gen_personal_token($email), gen_confirm_token($email)), '(?,?,?', false);
+    //error_log($invited_by);
+    $fields = '(email,personal_token,confirm_token,is_user';
+    $values = array($email = trim(strtolower($email)), gen_personal_token($email), gen_confirm_token($email), (int)((bool)$is_user));
+    $params = '(?,?,?,?';
+    $inviter = false;
     if ($invited_by) {
         $inviter = is_numeric($invited_by)
                  ? $invited_by
                  : (strpos($invited_by,'@') ? existing_email($invited_by) : existing_referrer($invited_by));
-        error_log($inviter);
-    }
-    if ($inviter and ($inviter = subscriber($inviter))) {
-        $fields .= ',invited_by';
-        $vph .= ',?';
-        $values[] = $inviter['id'];
-        //if( ! $no_confirm) send_confirm_email($email, $values[2], $inviter['email'], $inviter['personal_token']); 
+        //error_log($inviter);
+        if ($inviter and ($inviter = subscriber($inviter))) {
+            $fields .= ',invited_by';
+            $params .= ',?';
+            $values[] = $inviter['id'];
+            //if( ! $no_confirm) send_confirm_email($email, $values[2], $inviter['email'], $inviter['personal_token']); 
+        }
     }
     $fields .=  ')';
-    $vph .=  ')';
-    $q = db()->prepare("insert into subscribers{$fields} values{$vph}");
+    $params .=  ')';
+    $q = db()->prepare("insert into subscribers{$fields} values{$params}");
     return $q->execute($values);
 }
 
-function subscriber($email_or_id_or_token, $fields = '`id`,`email`,`personal_token`,`invited_by`,`confirmed`,`slideshowed`')
+function set_is_user($id)
+{
+    $id = (int)$id;
+    $q = db()->prepare("update subscribers set `is_user` = 1 where `id` = ? ;");
+    $q->execute(array($id));
+}
+
+function subscriber($email_or_id_or_token, $fields = '`id`,`email`,`personal_token`,`invited_by`,`confirmed`,`slideshowed`,`created`,`is_user`')
 {
     $id = is_numeric($email_or_id_or_token)
         ? trim($email_or_id_or_token)
@@ -99,7 +100,7 @@ function subscriber($email_or_id_or_token, $fields = '`id`,`email`,`personal_tok
     return ($q->execute(array($id)) and ($res = $q->fetchAll(PDO::FETCH_ASSOC))) ? $res[0] : false ;
 }
 
-function email_is_invitation($email)
+function email_is_invitation($email) // deprecated
 {
     if ( ! $email) return;
     $sub = subscriber($email);
@@ -112,7 +113,8 @@ function invited_friendcount($email)
     //return 10;
     $sub = subscriber($email);
     if ( ! $sub) return 0;
-    $res = db()->query("select count(*) from subscribers where `invited_by` = {$sub['id']} and (confirmed = 1 or slideshowed = 1);")->fetchAll();
+    //$res = db()->query("select count(*) from subscribers where `invited_by` = {$sub['id']} and (confirmed = 1 or slideshowed = 1);")->fetchAll();
+    $res = db()->query("select count(*) from subscribers where `invited_by` = {$sub['id']} and is_user = 1;")->fetchAll();
     //error_log(print_r($res,true));
     return isset($res[0][0]) ? $res[0][0] : 0;
 }

@@ -3,10 +3,16 @@
 // stuff
 require_once dirname(__FILE__) . '/../main.php';
 
+//echo "<pre>";
+//var_dump($_COOKIE);
+//echo "</pre>";
+//die();
+
 
 if (isset($_GET['c']) and preg_match('/^[0-9a-f]+$/i', $_GET['c'])) {
     confirm($_GET['c']);
 }
+
 $set_ad_code = true;
 if (isset($_COOKIE['prewh_email']) and isset($_GET['a']) and ($ad_sub = subscriber($_COOKIE['prewh_email'])) and empty($ad_sub['ad_code'])) {
     set_ad_code_to_user($_COOKIE['prewh_email'], $_GET['a']);
@@ -92,8 +98,13 @@ if (isset($_COOKIE['prewh_email']) and isset($_GET['a']) and ($ad_sub = subscrib
         */
         function slideshowing(Sub)
         {
+            //if (Sub.register) { // new user
+            //    mixpanel.track('homepage');
+            //    console.log("mixpanel.track('homepage');");
+            //}
             if ( ! Sub.slideshowed) {
                 mixpanel.track('slide 1');
+                console.log("mixpanel.track('slide 1');");
                 (function($){
                     $('.ctext.ctext-11').bind('inview', function(ev,is_in){
                         var $slide = $(this);
@@ -103,6 +114,7 @@ if (isset($_COOKIE['prewh_email']) and isset($_GET['a']) and ($ad_sub = subscrib
                                 $slide.data('slideshowed', true);
                                 Sub.slideshowed = true;
                                 mixpanel.track('last slide');
+                                console.log("mixpanel.track('last slide')");
                                 $.post('/slideshowed.php','code='+Sub.personal_token);
                             }
                         }
@@ -114,7 +126,7 @@ if (isset($_COOKIE['prewh_email']) and isset($_GET['a']) and ($ad_sub = subscrib
         function setCookie (c_name, value, exp, as_seconds)
         {
             var exdate = new Date( (new Date().getTime()) + (exp * (as_seconds ? 1000 : (1000 * 60 * 60 * 24))) );
-            var c_value=escape(value) + ((exp==null) ? "" : "; expires="+exdate.toUTCString());
+            var c_value=encodeURIComponent(value) + ((exp==null) ? "" : "; expires="+exdate.toUTCString());
             document.cookie=c_name + "=" + c_value+"; path=/";
         }
         
@@ -127,9 +139,17 @@ if (isset($_COOKIE['prewh_email']) and isset($_GET['a']) and ($ad_sub = subscrib
                 y = ARRcookies[i].substr( ARRcookies[i].indexOf("=") + 1 );
                 x = x.replace( /^\s+|\s+$/g , "" );
                 if ( x == c_name ) {
-                    return unescape(y);
+                    return decodeURIComponent(y);
                 }
             }
+        }
+        
+        function set_mixpanel_subscriber_data(Sub)
+        {
+            if (typeof mixpanel != 'object' || typeof Sub != 'object') return;
+            mixpanel.people.set({"$email": Sub.email, "$id" :Sub.personal_token});
+            mixpanel.people.identify(Sub.personal_token);
+            mixpanel.name_tag(Sub.email);
         }
          
     </script>
@@ -147,7 +167,8 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
     <?php if (!isset($_COOKIE['prewh_email'])): ?> 
         <script type="text/javascript">
             mixpanel.track('homepage');
-           jQuery.backstretch('/static/images/overlay1.jpg');
+            console.log("mixpanel.track('homepage');");
+            jQuery.backstretch('/static/images/overlay1.jpg');
         </script>
      <?php endif; ?>
     <!--<div class="email_box">-->
@@ -292,11 +313,18 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                                         //$('html').css({position:'fixed', width:'100%', height:'100%', overflow:'hidden'});
                                         //$('#wrap').fadeIn('fast').delay(300);
                                         $('#wrap').show();
+                                        
+                                        if (Subscriber && Subscriber.email && Subscriber.personal_token) {
+                                            set_mixpanel_subscriber_data(Subscriber);
+                                        }
+                                        
+                                        
+                                        
                                         if (resp.existing && Subscriber.slideshowed) {
                                             mixpanel.track('autoscroll to invite');
-                                            mixpanel.people.set({"$email": Subscriber.email, "$id" :Subscriber.personal_token});
-                                            mixpanel.people.identify(Subscriber.personal_token);
-                                            mixpanel.name_tag(Subscriber.email);
+                                            console.log("mixpanel.track('autoscroll to invite');");
+                                            /// set mixpanel data
+                                            
                                             
                                             $.scrollTo(9230);
                                             if (getCookie('prewh_email')) {
@@ -465,6 +493,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                                     return false;
                                 }
                                 mixpanel.track('Invitation send');
+                                console.log("mixpanel.track('Invitation send');");
                                 $('#invitations-sent').fadeIn('fast').delay(1000).fadeOut('slow');
                                 $('#cloud_invite_input').val('');
                             }
