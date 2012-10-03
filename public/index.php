@@ -103,7 +103,9 @@ if (isset($_COOKIE['prewh_email']) and isset($_GET['a']) and ($ad_sub = subscrib
             //    console.log("mixpanel.track('homepage');");
             //}
             if ( ! Sub.slideshowed) {
+                console.log(Sub);
                 if (Sub.register) {
+                    console.log
                     mixpanel.track('slide 1');
                     console.log("mixpanel.track('slide 1');");
                 }
@@ -292,6 +294,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                                         Subscriber.confirmed = parseInt(Subscriber.confirmed) ? true : false;
                                         Subscriber.slideshowed = parseInt(Subscriber.slideshowed) ? true : false;
                                         Subscriber.personal_link = resp.personal_link;
+                                        Subscriber.register = resp.register;
                                         if ( ! getCookie('prewh_email')) {
                                             setCookie('prewh_email',Subscriber.email,15);
                                         }
