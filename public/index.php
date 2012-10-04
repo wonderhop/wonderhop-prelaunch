@@ -25,8 +25,8 @@ if (isset($_COOKIE['prewh_email']) and isset($_GET['a']) and ($ad_sub = subscrib
     <title>Curio Road</title>
     <meta http-equiv="Content-Type" name="content-type" content="text/html; charset=UTF-8" />
     <meta name="title" content="Curio Road | Unique finds for an inspired life" />
-    <meta name="description" content="Discover uniquely lovely jewelry, home decor and gifts, all at insider prices. Get inspired today!" />
-    <meta property="og:description" content="Discover uniquely lovely jewelry, home decor and gifts, all at insider prices. Get inspired today!" />
+    <meta name="description" content="Discover uniquely lovely jewelry, home decor and gifts, all at member-only prices. Get inspired today!" />
+    <meta property="og:description" content="Discover uniquely lovely jewelry, home decor and gifts, all at member-only prices. Get inspired today!" />
     <meta property="og:title"  name="title" content="You're invited to join Curio Road." />
     
     <?php
@@ -668,7 +668,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                                     left   = (jQuery(window).width()  - width)  / 2,
                                     top    = (jQuery(window).height() - height) / 2,
                                     url    = 'http://twitter.com/share/?url=' + Subscriber.personal_link,
-                                    eurl   = url+'&text=You\'re invited to join Curio Road. Discover uniquely lovely jewelry, home decor and gifts, all at insider prices',
+                                    eurl   = url+'&text=You\'re invited to join Curio Road. Discover uniquely lovely jewelry, home decor and gifts, all at member-only prices',
                                     opts   = 'status=1' +
                                             ',width='  + width  +
                                             ',height=' + height +
