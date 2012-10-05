@@ -139,8 +139,11 @@ function send_invitation_email($email, $confirmation_token, $inviter_email, $inv
 {    
     $confirmation_link = personal_link($inviter_email, 1) . '&c=' . $confirmation_token;
     $body = get_email($email, $confirmation_link, $inviter_email);
-    $text = "Congrats! $inviter_email just recommended you for membership to Curio Road.\n
-            Our members all have a passion for <b>unique and beautiful designs</b> -- and we help them discover one-of-a-kind jewelry, home décor and gifts to inspire their lives. 
+    $text = "Congrats $email!
+            $inviter_email just sent you
+            an invite to join Curio Road.
+            \n
+            Curio Road brings you beautiful vintage, indie and handmade designs from amazing artists -- all at member-only prices.
             \n
             Membership is free, but spots are limited. <b>Click below to accept your invitation</b> - but hurry, we only have a few spots left this week. \n
             Click here: <a href=\"$confirmation_link\">ACCEPT YOUR INVITATION</a> or copy this $confirmation_link into your browser.
@@ -318,7 +321,7 @@ width: 100%;}    </style>
                 <tr>
                     <td align="left" valign="top" width="112"><img alt="" border="0" height="153" src="' . $img_url . 'wonderhop_02.png" style="display:block" width="112" /></td>
                     <td align="center" valign="top" width="323"><a href="http://www.curioroad.com" title="Curio Road" target="_blank"><img alt="" border="0" height="78" src="' . $img_url . 'wonderhop_logo.png" style="display:block" width="321" /></a><br />
-                    <font color="#fd706b" size="+1" face="georgia">Congrats! <i>' . $inviter_email . '</i> just recommended you for membership to Curio Road.</font></td>
+                    <font color="#fd706b" size="+1" face="georgia">Congrats <i>'. $email .'</i>!<br/> <i>' . $inviter_email . '</i> just sent you <br/> an invite to join Curio Road.</font></td>
                     <td align="left" valign="top" width="100"> </td>
                 </tr>
             </table>            
@@ -343,7 +346,7 @@ width: 100%;}    </style>
                                     <br />
                                     <font color="#7f767e" size="+0" face="georgia">
                                         <i>
-                                            Our members all have a passion for <b>unique and beautiful designs</b> &mdash; and we help them discover one-of-a-kind jewelry, home decor and gifts to inspire their lives. 
+                                            Curio Road brings you beautiful vintage, indie and handmade designs from amazing artists &mdash; all at member-only prices.
                                             <br /><br />
                                             Membership is free, but spots are limited.<br/> <b>Click below to accept your invitation</b> - <br/> but hurry, we only have a few spots left this week.
                                         </i>
