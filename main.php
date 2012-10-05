@@ -321,7 +321,7 @@ width: 100%;}    </style>
                 <tr>
                     <td align="left" valign="top" width="112"><img alt="" border="0" height="153" src="' . $img_url . 'wonderhop_02.png" style="display:block" width="112" /></td>
                     <td align="center" valign="top" width="323"><a href="http://www.curioroad.com" title="Curio Road" target="_blank"><img alt="" border="0" height="78" src="' . $img_url . 'wonderhop_logo.png" style="display:block" width="321" /></a><br />
-                    <font color="#fd706b" size="+1" face="georgia">Congrats <i>'. $email .'</i>!<br/> <i>' . $inviter_email . '</i> just sent you <br/> an invite to join Curio Road.</font></td>
+                    <font color="#fd706b" size="+1" face="georgia">Congrats <i>'. $email .'</i>!<br/><br/> <i>' . $inviter_email . '</i> just sent<br/> you an invite to join Curio Road.</font></td>
                     <td align="left" valign="top" width="100"> </td>
                 </tr>
             </table>            
@@ -346,9 +346,9 @@ width: 100%;}    </style>
                                     <br />
                                     <font color="#7f767e" size="+0" face="georgia">
                                         <i>
-                                            Curio Road brings you beautiful vintage, indie and handmade designs from amazing artists &mdash; all at member-only prices.
-                                            <br /><br />
-                                            Membership is free, but spots are limited.<br/> <b>Click below to accept your invitation</b> - <br/> but hurry, we only have a few spots left this week.
+                                            Curio Road brings you beautiful vintage, indie and handmade designs from amazing artists &mdash;<br/> <b>all at member-only prices</b>.
+                                            <br/><br/>
+                                            Membership is free, but spots are limited.<br/> Click below to accept your invitation.
                                         </i>
                                     </font>
                                     <br />
