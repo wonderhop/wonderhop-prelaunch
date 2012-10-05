@@ -148,7 +148,7 @@ function send_invitation_email($email, $confirmation_token, $inviter_email, $inv
     //error_log($text);
     //error_log($email);
     //error_log($body);
-    send_sendgrid_email($email, $text, $body, "$inviter_email just gave you access to Curio Road");
+    send_sendgrid_email($email, $text, $body, "$inviter_email invited you to Curio Road - unique finds from amazing artists");
 }
 
 function send_sendgrid_email($email, $text, $html, $subject)
