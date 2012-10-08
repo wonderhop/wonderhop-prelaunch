@@ -103,11 +103,11 @@ if (isset($_COOKIE['prewh_email']) and isset($_GET['a']) and ($ad_sub = subscrib
             //    console.log("mixpanel.track('homepage');");
             //}
             if ( ! Sub.slideshowed) {
-                console.log(Sub);
+                //console.log(Sub);
                 if (Sub.register) {
-                    console.log
+                    //console.log
                     mixpanel.track('slide 1');
-                    console.log("mixpanel.track('slide 1');");
+                    //console.log("mixpanel.track('slide 1');");
                 }
                 (function($){
                     $('.ctext.ctext-11').bind('inview', function(ev,is_in){
@@ -118,7 +118,7 @@ if (isset($_COOKIE['prewh_email']) and isset($_GET['a']) and ($ad_sub = subscrib
                                 $slide.data('slideshowed', true);
                                 Sub.slideshowed = true;
                                 mixpanel.track('last slide');
-                                console.log("mixpanel.track('last slide')");
+                                //console.log("mixpanel.track('last slide')");
                                 $.post('/slideshowed.php','code='+Sub.personal_token);
                             }
                         }
@@ -171,7 +171,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
     <?php if (!isset($_COOKIE['prewh_email'])): ?> 
         <script type="text/javascript">
             mixpanel.track('homepage');
-            console.log("mixpanel.track('homepage');");
+            //console.log("mixpanel.track('homepage');");
             jQuery.backstretch('/static/images/overlay1.jpg');
         </script>
      <?php endif; ?>
@@ -263,7 +263,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                         </form> 
                         <script type="text/javascript">
                             if (getURef()) {
-                                console.log('is_referred');
+                                //console.log('is_referred');
                                 is_referred = true;
                                 changePopupContentReferred();
                             }
@@ -277,7 +277,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                             ev.preventDefault();
                             $('wrap').show();
                             var URef = getURef();
-                            console.log(URef);
+                            //console.log(URef);
                             if (URef) {
                                 $regForm.append('<input type="hidden" name="inviter" value="'+URef+'" />');
                             }
@@ -327,7 +327,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                                         
                                         if (resp.existing && Subscriber.slideshowed) {
                                             mixpanel.track('autoscroll to invite');
-                                            console.log("mixpanel.track('autoscroll to invite');");
+                                            //console.log("mixpanel.track('autoscroll to invite');");
                                             /// set mixpanel data
                                             
                                             
@@ -349,7 +349,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                                                 
                                                 if (getARef() && <?php echo $set_ad_code ? 'true' : 'false'; ?>) {
                                                     $.get('/adcode.php','a=' + getARef() + '&e=' + encodeURIComponent(Subscriber.email), function(data){
-                                                       console.log('jsa');
+                                                       //console.log('jsa');
                                                     });
                                                 }
                                                 $.post('/friendcount.php','count=1',function(data){
@@ -464,14 +464,14 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                 
                 (function($){$(function(){
                     $('#cloud_invite_input, .csicon, .elements_container').click(function(ev){
-                        console.log('clk');
+                        //console.log('clk');
                         ev.stopPropagation();
                         //ev.preventDefault();
                         //$(this).focus();
                     });
                     $('.backwhitefix, .ctext').not('.ctext-11').click(function(){
                         var page = parseInt(window.scrollY /920) + 1;
-                        console.log(page);
+                        //console.log(page);
                         if (page > 10) return;
                         var ph = 920, diffr = 0;
                         //if (page === 1) diffr = 100;
@@ -498,7 +498,7 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                                     return false;
                                 }
                                 mixpanel.track('Invitation send');
-                                console.log("mixpanel.track('Invitation send');");
+                                //console.log("mixpanel.track('Invitation send');");
                                 $('#invitations-sent').fadeIn('fast').delay(1000).fadeOut('slow');
                                 $('#cloud_invite_input').val('');
                             }
@@ -613,8 +613,8 @@ mixpanel.init("<?php $key_file = dirname(__FILE__) . '/../mp_domain.key';
                                 $cc.addClass('current');
                                 msg = msg ? msg : ('YOU\'VE EARNED ' + $('.ammount',$cc).text() + '!');
                                 $('.money span').html(msg);
-                                console.log(add_msg_class);
-                                console.log(rem_msg_class);
+                                //console.log(add_msg_class);
+                                //console.log(rem_msg_class);
                                 if (add_msg_class) { $('.money span').addClass(add_msg_class); $('.ammount',$cc).addClass(add_msg_class); }
                                 if (rem_msg_class) { $('.money span').removeClass(rem_msg_class); $('.ammount',$cc).removeClass(rem_msg_class); }
                             }
